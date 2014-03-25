@@ -26,6 +26,16 @@ cube
 	scl 12.35 1.32 4
 	texture wall
 cube
+	pos -4 4 0
+	rot 0 0 0
+	scl .5 .5 1
+	texture sky
+cube
+	pos 4 4 0
+	rot 0 0 0
+	scl .5 .5 1
+	texture sky
+cube
 	pos 13.2965 5.0668 0
 	rot 0 0 0
 	scl 1.1 3.05 4

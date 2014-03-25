@@ -103,6 +103,11 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
     Rect r(target->rect);
     r.Scale(target->owner->transform.gScale());
     r.AddOffset(uPos);
+
+
+    target->xsd = xSideN::None;
+    target->ysd = ySideN::None;
+
     for(Collider2d* c : colliders)
     {
         if(target == c) /// Stop colliding with yourself!
@@ -116,26 +121,17 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
         bool xBoth  = r.xma > cr.xma && r.xmi < cr.xmi;
         bool right  = isIn(r.xmi,cr.xmi,cr.xma);
         bool left   = isIn(r.xma,cr.xmi,cr.xma);
-        bool up     = isIn(r.ymi,cr.ymi,cr.yma);
+        bool top    = isIn(r.ymi,cr.ymi,cr.yma);
         bool bottom = isIn(r.yma,cr.ymi,cr.yma);
 
-        target->xsd = xSideN::Both;
-
-        if( yBoth ) /// Both
-        {
-            if (xBoth || right || left)
+        if(top || bottom )
+            if (right || left)
+            {
                 val.push_back(c);
-        }
-        else if( up ) /// Top
-        {
-            if (xBoth || right || left)
-                val.push_back(c);
-        }
-        else if( bottom ) /// Bottom
-        {
-            if (xBoth || right || left)
-                val.push_back(c);
-        }
+                target->xsd = xBoth ? xSideN::Both : (right ? xSideN::Right : xSideN::Left);
+                //target->ysd = yBoth ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
+                target->ysd = top == bottom ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
+            }
     }
 
     return val;

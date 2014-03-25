@@ -77,8 +77,8 @@ void Physics::Update() /// Update this object
 {
     if(owner->isActive)
     {
-        /*if(owner->nameToken == "player")
-            cout << collider->c1 << " : " << collider->c2 << endl;*/
+        if(owner->nameToken == "player")
+            cout << (collider->ysd) << endl;
 
         vec3 tForce = constForce;
 
@@ -94,7 +94,7 @@ void Physics::Update() /// Update this object
         }
 
         if(!isGrounded && tForce == constForce)
-            tForce = vec3(0,-.01f,0);
+            tForce = vec3(0,-.005f,0);
 
         /// Apply force!
         if(tForce != vec3(0,0,0))
