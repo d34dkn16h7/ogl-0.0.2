@@ -1,0 +1,4 @@
+model Data/Cube.obj
+texture bsky
+scale 1 1 1
+physics

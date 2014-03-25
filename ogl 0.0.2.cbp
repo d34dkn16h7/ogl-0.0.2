@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ogl 0.0.2" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="ogl 0.0.2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="ogl 0.0.2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++11" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+			<Add option="-DGLEW_STATIC" />
+			<Add option="-DGLFW_INCLUDE_GLU" />
+		</Compiler>
+		<Linker>
+			<Add library="SOIL" />
+			<Add library="glew32s" />
+			<Add library="glfw3" />
+			<Add library="opengl32" />
+			<Add library="gdi32" />
+			<Add library="glu32" />
+		</Linker>
+		<Unit filename="Data/Shaders/dFS.glsl" />
+		<Unit filename="Data/Shaders/dFSTextured.glsl" />
+		<Unit filename="Data/Shaders/dVS.glsl" />
+		<Unit filename="Data/Shaders/fsText3.30.glsl" />
+		<Unit filename="Data/_map.mp" />
+		<Unit filename="Data/cube.pref" />
+		<Unit filename="Data/plane.pref" />
+		<Unit filename="Data/player.pref" />
+		<Unit filename="Data/settings" />
+		<Unit filename="Src/Tools/file.cpp" />
+		<Unit filename="Src/Tools/settings.cpp" />
+		<Unit filename="Src/Tools/str.cpp" />
+		<Unit filename="Src/Tools/token.cpp" />
+		<Unit filename="Src/camera.cpp" />
+		<Unit filename="Src/camera.h" />
+		<Unit filename="Src/collider2d.cpp" />
+		<Unit filename="Src/collider2d.h" />
+		<Unit filename="Src/component.h" />
+		<Unit filename="Src/editor.cpp" />
+		<Unit filename="Src/editor.h" />
+		<Unit filename="Src/game.cpp" />
+		<Unit filename="Src/game.h" />
+		<Unit filename="Src/gameObject.cpp" />
+		<Unit filename="Src/gameObject.h" />
+		<Unit filename="Src/geometry.cpp" />
+		<Unit filename="Src/geometry.h" />
+		<Unit filename="Src/input.cpp" />
+		<Unit filename="Src/input.h" />
+		<Unit filename="Src/main.cpp" />
+		<Unit filename="Src/map.cpp" />
+		<Unit filename="Src/map.h" />
+		<Unit filename="Src/physics.cpp" />
+		<Unit filename="Src/physics.h" />
+		<Unit filename="Src/program.cpp" />
+		<Unit filename="Src/program.h" />
+		<Unit filename="Src/render.h" />
+		<Unit filename="Src/renderer.cpp" />
+		<Unit filename="Src/renderer.h" />
+		<Unit filename="Src/texture.cpp" />
+		<Unit filename="Src/texture.h" />
+		<Unit filename="Src/tools.h" />
+		<Unit filename="Src/transform.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

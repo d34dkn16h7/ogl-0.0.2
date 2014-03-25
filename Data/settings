@@ -1,0 +1,20 @@
+﻿#textureMode true
+#textureModern true
+#isModernGL true -non-modernFails
+
+vertex Data/Shaders/dVS.glsl
+-fragment Data/Shaders/fsText3.30.glsl
+fragment Data/Shaders/dFSTextured.glsl
+
+map Data/_map.mp
+
+#obj cube Data/cube.pref
+#obj player Data/player.pref
+#obj icosphere Data/icosphere.pref
+#obj plane Data/plane.pref
+
+#texture Data/Textures/bsky.jpg bsky
+#texture Data/Textures/sky.jpg sky
+#texture Data/Textures/head.png head
+#texture Data/Textures/wall.jpg wall
+#texture Data/Textures/floor.jpg floor

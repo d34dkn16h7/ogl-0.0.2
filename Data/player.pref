@@ -1,0 +1,5 @@
+model Data/Player.obj
+texture sky
+scale .5 .5 .5
+physics
+csize .6 4 1

@@ -1,0 +1,200 @@
+# depslib dependency file v1.0
+1387840053 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
+	"camera.h"
+
+1387490202 d:\projects\git\ogl-0.0.2\src\camera.h
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<string>
+	"transform.h"
+
+1388533784 d:\projects\git\ogl-0.0.2\src\transform.h
+	<glm/gtc/matrix_transform.hpp>
+	<glm/glm.hpp>
+
+1395763211 source:d:\projects\git\ogl-0.0.2\src\collider2d.cpp
+	<typeinfo>
+	"collider2d.h"
+	"gameObject.h"
+
+1395760415 d:\projects\git\ogl-0.0.2\src\collider2d.h
+	<glm/glm.hpp>
+	<vector>
+	"tools.h"
+	"component.h"
+
+1391290251 d:\projects\git\ogl-0.0.2\src\tools.h
+	<glm/glm.hpp>
+	<iostream>
+	<stdlib.h>
+	<cstdlib>
+	<fstream>
+	<sstream>
+	<vector>
+	<string>
+
+1371708250 d:\projects\git\ogl-0.0.2\src\component.h
+	<typeinfo>
+	<string>
+	<vector>
+
+1395692991 d:\projects\git\ogl-0.0.2\src\gameobject.h
+	<stdexcept>
+	<typeinfo>
+	"tools.h"
+	"geometry.h"
+	"component.h"
+	"transform.h"
+
+1388613808 d:\projects\git\ogl-0.0.2\src\geometry.h
+	<glm/gtc/matrix_transform.hpp>
+	<glm/glm.hpp>
+	<SOIL/SOIL.h>
+	<GL/glew.h>
+	<fstream>
+	<vector>
+	<string>
+	"texture.h"
+
+1388276021 d:\projects\git\ogl-0.0.2\src\texture.h
+	<unordered_map>
+	<SOIL/SOIL.h>
+	<GL/glew.h>
+	<vector>
+	<string>
+
+1388703642 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
+	"map.h"
+	"input.h"
+	"camera.h"
+	"editor.h"
+	"physics.h"
+	"collider2d.h"
+	"component.h"
+	"gameObject.h"
+
+1388703379 d:\projects\git\ogl-0.0.2\src\map.h
+	<glm/glm.hpp>
+	<stdexcept>
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+	<vector>
+
+1376379020 d:\projects\git\ogl-0.0.2\src\input.h
+	<GL/glew.h>
+	<glm/glm.hpp>
+	<GLFW/glfw3.h>
+
+1388703243 d:\projects\git\ogl-0.0.2\src\editor.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	<glm/glm.hpp>
+	<vector>
+	<string>
+
+1395701540 d:\projects\git\ogl-0.0.2\src\physics.h
+	<glm/glm.hpp>
+	<vector>
+	"component.h"
+
+1389980485 source:d:\projects\git\ogl-0.0.2\src\game.cpp
+	"map.h"
+	"game.h"
+	"input.h"
+	"editor.h"
+	"physics.h"
+	"renderer.h"
+	"gameObject.h"
+	"camera.h"
+	<string>
+
+1377943512 d:\projects\git\ogl-0.0.2\src\game.h
+	<glm/glm.hpp>
+
+1395763932 d:\projects\git\ogl-0.0.2\src\renderer.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	<SOIL/SOIL.h>
+	<stdexcept>
+	<iostream>
+	<vector>
+	<string>
+
+1388613814 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
+	"gameObject.h"
+	"renderer.h"
+	"collider2d.h"
+	"physics.h"
+	"tools.h"
+	"map.h"
+	<iostream>
+
+1391291037 source:d:\projects\git\ogl-0.0.2\src\geometry.cpp
+	"program.h"
+	"geometry.h"
+	"renderer.h"
+	"tools.h"
+
+1372844930 d:\projects\git\ogl-0.0.2\src\program.h
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/glm.hpp>
+	<GL/glew.h>
+	<stdexcept>
+	<fstream>
+	<string>
+	<vector>
+
+1387837758 source:d:\projects\git\ogl-0.0.2\src\input.cpp
+	"input.h"
+	"camera.h"
+	"renderer.h"
+
+1373958340 source:d:\projects\git\ogl-0.0.2\src\main.cpp
+	"game.h"
+
+1388613828 source:d:\projects\git\ogl-0.0.2\src\map.cpp
+	"map.h"
+	"game.h"
+	"tools.h"
+	"gameObject.h"
+
+1395746827 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
+	<typeinfo>
+	"physics.h"
+	"collider2d.h"
+	"gameObject.h"
+
+1372907634 source:d:\projects\git\ogl-0.0.2\src\program.cpp
+	"tools.h"
+	"program.h"
+
+1395764005 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
+	"game.h"
+	"tools.h"
+	"editor.h"
+	"camera.h"
+	"program.h"
+	"geometry.h"
+	"renderer.h"
+	"gameObject.h"
+
+1388595754 source:d:\projects\git\ogl-0.0.2\src\texture.cpp
+	"tools.h"
+	"texture.h"
+
+1390857271 source:d:\projects\git\ogl-0.0.2\src\tools\file.cpp
+	"../tools.h"
+
+1391290332 source:d:\projects\git\ogl-0.0.2\src\tools\settings.cpp
+	"../tools.h"
+	"../texture.h"
+
+1390857315 source:d:\projects\git\ogl-0.0.2\src\tools\str.cpp
+	"../tools.h"
+
+1390857325 source:d:\projects\git\ogl-0.0.2\src\tools\token.cpp
+	"../tools.h"
+

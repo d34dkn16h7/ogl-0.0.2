@@ -1,0 +1,6 @@
+model Data/Icosphere.obj
+texture sky
+scale 1 1 1
+physics
+csize 1 .5 1
+coffset 0 .5 0
