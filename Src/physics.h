@@ -61,6 +61,7 @@ private:
 
     vector<forcePush> forcePList; /// List of registered objects
 public:
+    bool isStatic = false;
     Physics(GameObject*);
     virtual ~Physics(); /// Call UnReg()
     void Start();

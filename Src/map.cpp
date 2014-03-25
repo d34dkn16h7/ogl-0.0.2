@@ -2,6 +2,7 @@
 #include "game.h"
 #include "tools.h"
 #include "gameObject.h"
+#include "physics.h"
 
 using namespace Tools;
 
@@ -27,7 +28,7 @@ void Map::LoadMap(string fSrc) /// Load and construct gameObjects by .mp file
             else if(mapToken == "rot" ) gmo->transform.uRotation( mapToken.GetNVec3() );
             else if(mapToken == "scl" ) gmo->transform.uScale( mapToken.GetNVec3() );
             else if(mapToken == "texture" ) gmo->m_tex.SetTexture( mapToken.Next() );
-            else if(mapToken == "staticObject") gmo->DestroyComponents();
+            else if(mapToken == "staticObject") gmo->physics->isStatic = true;//gmo->DestroyComponents();
         }
     }
 }

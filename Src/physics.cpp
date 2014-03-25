@@ -77,8 +77,7 @@ void Physics::Update() /// Update this object
 {
     if(owner->isActive)
     {
-        if(owner->nameToken == "player")
-            cout << (collider->ysd) << endl;
+        // if(owner->nameToken == "player") cout << (collider->ysd) << endl;
 
         vec3 tForce = constForce;
 
@@ -93,7 +92,7 @@ void Physics::Update() /// Update this object
                 forcePList.erase(forcePList.begin() + i);
         }
 
-        if(!isGrounded && tForce == constForce)
+        if(/*!isGrounded*/ !isStatic && tForce == constForce)
             tForce = vec3(0,-.005f,0);
 
         /// Apply force!

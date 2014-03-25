@@ -88,7 +88,7 @@ vector<Collider2d*> Collider2d::Intersect(vec3 nPos) /// Wrapper to Intersect( C
 
 bool isIn(float val,float minF,float maxF) /// Done
 {
-    return val > minF && val < maxF;
+    return val >= minF && val <= maxF;
 }
 
 bool isIn(vec2 val,vec2 val2) /// WIP
@@ -117,8 +117,8 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
         cr.Scale(c->owner->transform.gScale());
         cr.AddOffset(c->owner->transform.gPosition());
 
-        bool yBoth  = r.yma > cr.yma && r.ymi < cr.ymi;
-        bool xBoth  = r.xma > cr.xma && r.xmi < cr.xmi;
+        bool yBoth  = r.yma >= cr.yma && r.ymi <= cr.ymi;
+        bool xBoth  = r.xma >= cr.xma && r.xmi <= cr.xmi;
         bool right  = isIn(r.xmi,cr.xmi,cr.xma);
         bool left   = isIn(r.xma,cr.xmi,cr.xma);
         bool top    = isIn(r.ymi,cr.ymi,cr.yma);
@@ -129,8 +129,8 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
             {
                 val.push_back(c);
                 target->xsd = xBoth ? xSideN::Both : (right ? xSideN::Right : xSideN::Left);
-                //target->ysd = yBoth ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
-                target->ysd = top == bottom ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
+                target->ysd = yBoth ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
+                //target->ysd = top == bottom ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
             }
     }
 
