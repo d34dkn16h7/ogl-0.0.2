@@ -94,7 +94,7 @@ void Physics::Update() /// Update this object
         }
 
         if(!isGrounded && tForce == constForce)
-            tForce = vec3(0,-.04f,0);
+            tForce = vec3(0,-.01f,0);
 
         /// Apply force!
         if(tForce != vec3(0,0,0))

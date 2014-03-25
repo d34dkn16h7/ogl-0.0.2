@@ -123,29 +123,17 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
 
         if( yBoth ) /// Both
         {
-            if (xBoth) /// Both
-                val.push_back(c);
-            else if( right )/// Right
-                val.push_back(c);
-            else if( left ) /// Left
+            if (xBoth || right || left)
                 val.push_back(c);
         }
         else if( up ) /// Top
         {
-            if (xBoth) /// Both
-                val.push_back(c);
-            else if(right) /// Right
-                val.push_back(c);
-            else if( left ) /// Left
+            if (xBoth || right || left)
                 val.push_back(c);
         }
         else if( bottom ) /// Bottom
         {
-            if ( xBoth ) /// Both
-                val.push_back(c);
-            else if( right ) /// Right
-                val.push_back(c);
-            else if( left ) /// Left
+            if (xBoth || right || left)
                 val.push_back(c);
         }
     }
