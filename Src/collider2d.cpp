@@ -86,17 +86,17 @@ vector<Collider2d*> Collider2d::Intersect(vec3 nPos) /// Wrapper to Intersect( C
     return Intersect(this , nPos);
 }
 
-bool isIn(float val,float minF,float maxF)
+bool isIn(float val,float minF,float maxF) /// Done
 {
     return val > minF && val < maxF;
 }
 
-bool isIn(vec2 val,vec2 val2)
+bool isIn(vec2 val,vec2 val2) /// WIP
 {
-    return val.x > val2.x && val.y < val2.y;
+    return false;
 }
 
-/// WFT!?
+/// Very WIP
 vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// Intersect
 {
     vector<Collider2d*> val;
@@ -118,6 +118,8 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
         bool left   = isIn(r.xma,cr.xmi,cr.xma);
         bool up     = isIn(r.ymi,cr.ymi,cr.yma);
         bool bottom = isIn(r.yma,cr.ymi,cr.yma);
+
+        target->xsd = xSideN::Both;
 
         if( yBoth ) /// Both
         {
@@ -150,94 +152,3 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
 
     return val;
 }
-/*
-vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// Intersect
-{
-    vector<Collider2d*> val;
-    Rect r(target->rect);
-    r.Scale(target->owner->transform.gScale());
-    r.AddOffset(uPos);
-    for(Collider2d* c : colliders)
-    {
-        if(target == c) /// Stop colliding with yourself!
-            continue;
-
-        Rect cr( c->rect);
-        cr.Scale(c->owner->transform.gScale());
-        cr.AddOffset(c->owner->transform.gPosition());
-
-
-        if( (r.yma > cr.yma && r.ymi < cr.ymi) ) /// Both
-        {
-            if (r.xma > cr.xma && r.xmi < cr.xmi) /// Both
-            {
-                c->c1 = Side::Both;
-                c->c2 = Side::Both;val.push_back(c);
-            }
-            else if( (r.xmi > cr.xmi && r.xmi < cr.xma) )/// Right
-            {
-                c->c1 = Side::Right;
-                c->c2 = Side::Both;val.push_back(c);
-            }
-            else if(r.xma > cr.xmi && r.xma < cr.xma) /// Left
-            {
-                c->c1 = Side::Left;
-                c->c2 = Side::Both;val.push_back(c);
-            }
-            else
-            {
-                c->c1 = Side::None;
-                c->c2 = Side::None;
-            }
-        }
-        else if( (r.ymi > cr.ymi && r.ymi < cr.yma) ) /// Top
-        {
-            if (r.xma > cr.xma && r.xmi < cr.xmi) /// Both
-            {
-                c->c1 = Side::Both;
-                c->c2 = Side::Top;val.push_back(c);
-            }
-            else if( (r.xmi > cr.xmi && r.xmi < cr.xma)) /// Right
-            {
-                c->c1 = Side::Right;
-                c->c2 = Side::Top;val.push_back(c);
-            }
-            else if(r.xma > cr.xmi && r.xma < cr.xma) /// Left
-            {
-                c->c1 = Side::Left;
-                c->c2 = Side::Top;val.push_back(c);
-            }
-            else
-            {
-                c->c1 = Side::None;
-                c->c2 = Side::None;
-            }
-        }
-        else if( (r.yma < cr.yma && r.yma > cr.ymi) ) /// Bottom
-        {
-            if (r.xma > cr.xma && r.xmi < cr.xmi) /// Both
-            {
-                c->c1 = Side::Both;
-                c->c2 = Side::Bottom;val.push_back(c);
-            }
-            else if( (r.xmi > cr.xmi && r.xmi < cr.xma)) /// Right
-            {
-                c->c1 = Side::Right;
-                c->c2 = Side::Bottom;val.push_back(c);
-            }
-            else if(r.xma > cr.xmi && r.xma < cr.xma) /// Left
-            {
-                c->c1 = Side::Left;
-                c->c2 = Side::Bottom;val.push_back(c);
-            }
-            else
-            {
-                c->c1 = Side::None;
-                c->c2 = Side::None;
-            }
-        }
-    }
-
-    return val;
-}
-*/
