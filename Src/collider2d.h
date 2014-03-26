@@ -53,10 +53,10 @@ public:
     static GameObject* Get(vec3);
     static vector<GameObject*> GetAll(vec3);
 
-    vector<Collider2d*> Intersect();
-    vector<Collider2d*> Intersect( vec3 );
-    static vector<Collider2d*> Intersect( Collider2d* );
-    static vector<Collider2d*> Intersect( Collider2d* , vec3);
+    vector<ColliderHit> Intersect();
+    vector<ColliderHit> Intersect( vec3 );
+    static vector<ColliderHit> Intersect( Collider2d* );
+    static vector<ColliderHit> Intersect( Collider2d* , vec3);
 
 
     vector<ColliderHit> UpdateStatus();
@@ -64,7 +64,10 @@ public:
 
 struct ColliderHit
 {
+    vec2 dist;
     Collider2d* collider;
+    ColliderHit() : collider(nullptr) {}
+    ColliderHit(Collider2d* c,vec2 d = vec2(0,0) ) : collider(c) , dist(d) {}
 };
 
 #endif // COLLIDER_H

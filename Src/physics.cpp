@@ -27,7 +27,12 @@ void Physics::Start()
 void Physics::Jump()
 {
     //if(collider->c2 == Side::Both || collider->c2 == Side::Bottom )
-    Push( vec3(0,5.5f,0), .03f );
+    Push( vec3(0,5.5f,0), .005f );
+}
+
+float gPosisive(float f)
+{
+    return f > 0 ? f : -f;
 }
 
 void Physics::Move(vec3 val) /// Move by val if not colliding
@@ -36,7 +41,7 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
 
     if(collider != nullptr)
     {
-        vector<Collider2d*> cl = collider->Intersect(cPos);
+        vector<ColliderHit> cl = collider->Intersect(cPos);
 
         /*bool xMinus,xPlus,yMinus,yPlus;
         xMinus = xPlus = yMinus = yPlus = false;
@@ -58,6 +63,25 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
 
         if(cl.size() == 0)
             owner->transform.uPosition(cPos);
+        else
+        {
+            vec2 d = cl[0].dist;
+            for(ColliderHit c : cl)
+            {
+                if(gPosisive(c.dist.x) < d.x)
+                    d.x = c.dist.x;
+
+                if(gPosisive(c.dist.y) < d.y)
+                    d.y = c.dist.y;
+            }
+            /*
+            if(owner->nameToken == "player")
+            {
+                cout << d.x << ":" << d.y << endl;
+            }*/
+
+            owner->transform.aPosition( vec3(d.x,d.y,0) );
+        }
     }
     else /// Don't have collider so just move
         owner->transform.uPosition(cPos);

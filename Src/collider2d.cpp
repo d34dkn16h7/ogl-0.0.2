@@ -59,7 +59,7 @@ vector<GameObject*> Collider2d::GetAll(vec3 pos) /// Get all colliders who intes
     return val;
 }
 
-vector<Collider2d*> Collider2d::Intersect() /// Wrapper to Intersect( Collider2d* )
+vector<ColliderHit> Collider2d::Intersect() /// Wrapper to Intersect( Collider2d* )
 {
     return Intersect(this);
 }
@@ -76,12 +76,12 @@ vector<ColliderHit> Collider2d::UpdateStatus()
     return val;
 }
 
-vector<Collider2d*> Collider2d::Intersect( Collider2d* target ) /// Wrapper to Intersect( Collider2d* , vec3 )
+vector<ColliderHit> Collider2d::Intersect( Collider2d* target ) /// Wrapper to Intersect( Collider2d* , vec3 )
 {
     return Intersect( target, target->owner->transform.gPosition() );
 }
 
-vector<Collider2d*> Collider2d::Intersect(vec3 nPos) /// Wrapper to Intersect( Collider2d* , vec3 )
+vector<ColliderHit> Collider2d::Intersect(vec3 nPos) /// Wrapper to Intersect( Collider2d* , vec3 )
 {
     return Intersect(this , nPos);
 }
@@ -97,9 +97,9 @@ bool isIn(vec2 val,vec2 val2) /// WIP
 }
 
 /// Very WIP
-vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// Intersect
+vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// Intersect
 {
-    vector<Collider2d*> val;
+    vector<ColliderHit> val;
     Rect r(target->rect);
     r.Scale(target->owner->transform.gScale());
     r.AddOffset(uPos);
@@ -117,17 +117,35 @@ vector<Collider2d*> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
         cr.Scale(c->owner->transform.gScale());
         cr.AddOffset(c->owner->transform.gPosition());
 
-        bool yBoth  = r.yma >= cr.yma && r.ymi <= cr.ymi;
-        bool xBoth  = r.xma >= cr.xma && r.xmi <= cr.xmi;
         bool right  = isIn(r.xmi,cr.xmi,cr.xma);
         bool left   = isIn(r.xma,cr.xmi,cr.xma);
         bool top    = isIn(r.ymi,cr.ymi,cr.yma);
         bool bottom = isIn(r.yma,cr.ymi,cr.yma);
 
+
+        bool yBoth  = top && bottom;//r.yma >= cr.yma && r.ymi <= cr.ymi;
+        bool xBoth  = right && left;//r.xma >= cr.xma && r.xmi <= cr.xmi;
+
         if(top || bottom )
             if (right || left)
             {
-                val.push_back(c);
+                vec2 d(0,0);
+
+                if(xBoth)
+                    d.x = 0;
+                else if(left)
+                    d.x = cr.xmi - r.xma;
+                else
+                    d.x = cr.xma - r.xmi;
+
+                if(yBoth)
+                    d.y = 0;
+                else if(top)
+                    d.y = cr.yma - r.ymi;
+                else
+                    d.y = cr.ymi - r.yma;
+
+                val.push_back( ColliderHit(c,d) );
                 target->xsd = xBoth ? xSideN::Both : (right ? xSideN::Right : xSideN::Left);
                 target->ysd = yBoth ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
                 //target->ysd = top == bottom ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
