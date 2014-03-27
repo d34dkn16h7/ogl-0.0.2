@@ -60,7 +60,6 @@
 		<Unit filename="Src/camera.cpp" />
 		<Unit filename="Src/camera.h" />
 		<Unit filename="Src/collider2d.cpp" />
-		<Unit filename="Src/collider2d.h" />
 		<Unit filename="Src/component.h" />
 		<Unit filename="Src/editor.cpp" />
 		<Unit filename="Src/editor.h" />

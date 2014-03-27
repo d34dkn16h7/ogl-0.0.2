@@ -30,7 +30,7 @@ void Physics::Jump()
     Push( vec3(0,5.5f,0), .005f );
 }
 
-float gPosisive(float f)
+float gPositive(float f)
 {
     return f > 0 ? f : -f;
 }
@@ -68,17 +68,23 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
             vec2 d = cl[0].dist;
             for(ColliderHit c : cl)
             {
-                if(gPosisive(c.dist.x) < d.x)
+                if(gPositive(c.dist.x) < d.x)
                     d.x = c.dist.x;
 
-                if(gPosisive(c.dist.y) < d.y)
+                if(gPositive(c.dist.y) < d.y)
                     d.y = c.dist.y;
             }
+
             /*
             if(owner->nameToken == "player")
             {
                 cout << d.x << ":" << d.y << endl;
             }*/
+
+            if(gPositive(cPos.x) < gPositive(d.x))
+                d.y = 0;
+            if(gPositive(cPos.y) < gPositive(d.y))
+                d.y = 0;
 
             owner->transform.aPosition( vec3(d.x,d.y,0) );
         }
@@ -116,7 +122,7 @@ void Physics::Update() /// Update this object
                 forcePList.erase(forcePList.begin() + i);
         }
 
-        if(/*!isGrounded*/ !isStatic && tForce == constForce)
+        if(collider->ysd == ySideN::None && !isStatic && tForce == constForce)
             tForce = vec3(0,-.005f,0);
 
         /// Apply force!
