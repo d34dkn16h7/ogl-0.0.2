@@ -24,7 +24,7 @@ void Renderer::RenderObjects() /// Render all objects
     prog->SetUniform("cameraMatrix",cam->GetMatrix());
     for(GameObject* gmo : drawObjects)
     {
-        //glPolygonMode( GL_FRONT_AND_BACK, Game::ins->editor->isSelected( gmo ) ? GL_LINE : GL_FILL);
+        glPolygonMode( GL_FRONT_AND_BACK, Game::ins->editor->isSelected( gmo ) ? GL_LINE : GL_FILL);
 
         prog->SetUniform("modelMatrix",gmo->transform.gMatrix());
 

@@ -9,7 +9,7 @@ vector< GData* > Geometry::gData;
 
 void Geometry::Load(string fSrc,string name) /// Load .obj model
 {
-    gPtr = Find(name);
+    gPtr = FindGDT(name);
     if(gPtr == nullptr)
     {
         gPtr = new GData();
@@ -48,7 +48,7 @@ void Geometry::Load(string fSrc,string name) /// Load .obj model
     }
 }
 
-GData* Geometry::Find(string sStr) /// Find a model ptr
+GData* Geometry::FindGDT(string sStr) /// Find a model ptr
 {
     for(GData* val : gData)
         if(val->info.modelId == sStr)

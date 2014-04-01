@@ -65,7 +65,7 @@ class Geometry
 private:
     static vector< GData* > gData;
 
-    GData* Find(string);
+    GData* FindGDT(string);
 
     void UniteData();
     void LinkData();

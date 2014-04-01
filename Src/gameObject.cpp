@@ -22,6 +22,11 @@ GameObject::~GameObject()
     DestroyComponents();
 }
 
+GameObject* GameObject::Find(string name)
+{
+    return nullptr;
+}
+
 void GameObject::LoadPrefab(string prefPath) /// Load and make prefab by nameToken
 {
     StoredToken token( prefPath , nameToken);

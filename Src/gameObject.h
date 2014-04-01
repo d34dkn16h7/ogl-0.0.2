@@ -31,6 +31,8 @@ public:
     GameObject(string);
     virtual ~GameObject();
 
+    static GameObject* Find(string);
+
     template <typename compType> void AddComponent() /// Add Component to this object
         {components.push_back( new compType(this) );}
 

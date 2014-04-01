@@ -14,6 +14,10 @@ void Editor::Update()
 
     if(Input::isMouse(0))
         MoveCam();
+
+    if(Input::isKeyPressed(GLFW_KEY_E))
+        UpdateSelection( GameObject::Find("player") );
+
 /*
     if(Input::isKeyPressed(GLFW_KEY_DOWN))
         if(sIndex > 0)
@@ -117,20 +121,13 @@ void Editor::SelectObjects()
 void Editor::UpdateSelections(const vector<GameObject*> val) /// Unite new vector with selected vector
 {
      for(GameObject* gmo : val)
-        if(!isSelected(gmo))
-        {
-            gmo->isActive = false;
-            selection.push_back(gmo);
-        }
-        else
-        {
-            gmo->isActive = true;
-            RemoveSelection(gmo);
-        }
+        UpdateSelection( gmo );
 }
 
 void Editor::UpdateSelection(GameObject* obj) /// Add object to selected vector
 {
+    if(obj == nullptr) return;
+
     if(!isSelected(obj))
     {
         obj->isActive = false;
