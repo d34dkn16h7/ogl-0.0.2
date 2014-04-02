@@ -72,8 +72,6 @@
 		<Unit filename="Src/input.cpp" />
 		<Unit filename="Src/input.h" />
 		<Unit filename="Src/main.cpp" />
-		<Unit filename="Src/map.cpp" />
-		<Unit filename="Src/map.h" />
 		<Unit filename="Src/physics.cpp" />
 		<Unit filename="Src/physics.h" />
 		<Unit filename="Src/program.cpp" />

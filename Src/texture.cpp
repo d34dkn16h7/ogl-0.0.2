@@ -15,8 +15,11 @@ void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
             if (tex == 0)
                 cout << "SOIL loading error for -> " << imgPath << " :" <<  SOIL_last_result() << endl;
 
-            cout << "Loaded " << imgPath << endl;
             _m[name] = (*this);
+
+#ifdef DBG_TEXTURE_LOAD
+            cout << "Loaded " << imgPath << endl;
+#endif // DBG_TEXTURE_LOAD
         }
         else
         {
@@ -29,13 +32,13 @@ void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
 
-            glGenerateMipmap( GL_TEXTURE_2D );
+            glGenerateMipmap(GL_TEXTURE_2D);
 
-            glActiveTexture( GL_TEXTURE0 );
-            glBindTexture( GL_TEXTURE_2D, tex );
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, tex);
             image = SOIL_load_image( imgPath.c_str() , &width, &height, 0, SOIL_LOAD_RGB );
-            glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,GL_UNSIGNED_BYTE, image );
-            SOIL_free_image_data( image );
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,GL_UNSIGNED_BYTE, image);
+            SOIL_free_image_data(image);
 
             _m[name] = (*this);
         }

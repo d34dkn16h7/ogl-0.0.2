@@ -1,6 +1,8 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+//#define DBG_GAMEOBJECT_FIND
+
 #include <stdexcept>
 #include <typeinfo>
 #include "tools.h"
@@ -21,21 +23,23 @@ private:
     void LoadPrefab(string); /// Load and make prefab by nameToken
 public:
     bool isActive;
-    Physics* physics = nullptr;
-    Transform transform; /// Position,Rotation,Scale
+    Transform transform;
+
+    Physics* physics = nullptr; /// for easy access
 
     GameObject(string);
     virtual ~GameObject();
-
-    void Reg();
-    void UnReg();
-    void static Reg(GameObject*);
-    void static UnReg(GameObject*);
 
     void static LoadFromFile(string);
     void static SaveToFile(string);
 
     static GameObject* Find(string);
+
+    void Reg();
+    void static Reg(GameObject*);
+
+    void UnReg();
+    void static UnReg(GameObject*);
 };
 
 #endif // GAMEOBJECT_H
