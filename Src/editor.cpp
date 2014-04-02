@@ -96,7 +96,6 @@ void Editor::PutObject() /// Crate new gameObject(cube)
     nPos.x /= 15;
     nPos.y /= 15;
     edit->transform.uPosition(nPos);
-    targetMap->Reg(edit);
     UpdateSelection(edit);
 }
 
@@ -156,11 +155,6 @@ void Editor::ClearSelection() /// Reset Selection
         gmo->isActive = true;
 
     selection.clear();
-}
-
-void Editor::SetTargetMap(Map* val)
-{
-    targetMap = val;
 }
 
 void Editor::aaPosition(vec3 val) /// Add to selections

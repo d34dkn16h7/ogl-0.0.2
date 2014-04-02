@@ -3,13 +3,16 @@
 #include "collider2d.h"
 #include "physics.h"
 #include "tools.h"
+#include "game.h"
 #include "map.h"
 #include <iostream>
 
 const static string DataDir = "Data/";
+vector<GameObject*> GameObject::gameObjects;
 
 GameObject::GameObject(string name) : isActive(true)
 {
+    Reg();
     nameToken = name;
     LoadPrefab( Settings::gPrefabPath(nameToken) );
     Renderer::RegObject(this);
@@ -17,14 +20,84 @@ GameObject::GameObject(string name) : isActive(true)
 
 GameObject::~GameObject()
 {
-    Map::ins->UnReg(this);
+    UnReg();
     Renderer::UnRegObject(this);
     DestroyComponents();
 }
 
 GameObject* GameObject::Find(string name)
 {
+    cout << "Find : " << name << endl;
+    for(unsigned int i = 0 ; i < gameObjects.size(); i++)
+    {
+        //cout << "-> : " << gameObjects[i]->nameToken << endl;
+        if(name == gameObjects[i]->nameToken)
+            return gameObjects[i];
+    }
+
+    cout << "No '" << name << "' found." << endl;
     return nullptr;
+}
+
+void GameObject::Reg()
+{
+    Reg(this);
+}
+void GameObject::UnReg()
+{
+    UnReg(this);
+}
+void GameObject::Reg(GameObject *gmo)
+{
+    gameObjects.push_back( gmo );
+}
+void GameObject::UnReg(GameObject *gmo)
+{
+    for(unsigned int i = 0 ; i < gameObjects.size(); i++)
+        if(gmo == gameObjects[i])
+            gameObjects.erase(gameObjects.begin() + i);
+}
+
+void GameObject::LoadFromFile(string fSrc)
+{
+    Token mapToken( File::LoadFile(fSrc) );
+    GameObject *gmo = nullptr;
+    gameObjects.clear();
+    while( mapToken.Next() != "#endToken" )
+    {
+        if( Settings::isObject( mapToken.Current() )) /// Make object?
+        {
+            gmo = new GameObject(  mapToken.Current() );
+            gameObjects.push_back( gmo );
+        }
+        else if(gmo != nullptr) /// Property if not empty object?
+        {
+            if(mapToken == "onControl" ) Game::player = gmo;
+            else if(mapToken == "pos" ) gmo->transform.uPosition( mapToken.GetNVec3() );
+            else if(mapToken == "rot" ) gmo->transform.uRotation( mapToken.GetNVec3() );
+            else if(mapToken == "scl" ) gmo->transform.uScale( mapToken.GetNVec3() );
+            else if(mapToken == "texture" ) gmo->m_tex.SetTexture( mapToken.Next() );
+            else if(mapToken == "staticObject") gmo->physics->isStatic = true;//gmo->DestroyComponents();
+        }
+    }
+}
+
+void GameObject::SaveToFile(string tFile)
+{
+    std::stringstream mstr;
+    for(GameObject* gmo : gameObjects)
+    {
+        mstr << gmo->gPtr->info.modelId << endl;
+
+        Str::AddHashStreamVec3(mstr ,"pos" , gmo->transform.gPosition() );
+        Str::AddHashStreamVec3(mstr ,"rot" , gmo->transform.gRotation() );
+        Str::AddHashStreamVec3(mstr ,"scl" , gmo->transform.gScale() );
+
+        if(gmo == Game::player) mstr << "\tonControl" << endl;
+        if(gmo->ComponentCount() < 1) mstr << "\tstaticObject" << endl;
+    }
+    File::SaveFile(tFile,mstr.str());
+    printf("Map Saved : %s \n\tMap Size : %i\n",tFile.c_str(),gameObjects.size());
 }
 
 void GameObject::LoadPrefab(string prefPath) /// Load and make prefab by nameToken

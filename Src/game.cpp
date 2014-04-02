@@ -14,12 +14,16 @@ GameObject* Game::player;
 bool Game::isOpen,Game::isEditor;
 float Game::deltaTime,Game::lastTime,Game::Speed;
 
+static vec3 Zero(0,0,0);
+static vec3 Up(0,1.0001,0) , Down = -Up;
+static vec3 Left(-1.0001,0,0) , Right = -Left;
+static vec3 Forward(0,0,-1.0001) , Backward = -Forward;
+
 int Game::Run()
 {
     Speed = 15;
     isEditor = true;
-    editor->SetTargetMap(map);
-    map->LoadMap( Settings::mapFile );
+    GameObject::LoadFromFile(Settings::mapFile);
     lastTime = glfwGetTime();
     onControl = player;
     while( (isOpen && !Input::isKeyRelased(GLFW_KEY_ESCAPE)) && !glfwWindowShouldClose( Renderer::gWindow() ) )
@@ -34,7 +38,7 @@ int Game::Run()
     return 0;
 }
 #include <string>
-Game::Game() : map( new Map() ) , editor( new Editor() )
+Game::Game() : editor( new Editor() )
 {
     ins = this;
     Tools::Settings::LoadSettings();
@@ -73,7 +77,7 @@ void Game::input() /// Player input - remove it later
         }
     }
     if(Input::isKeyRelased(GLFW_KEY_END))
-        map->SaveMap(Settings::mapFile);
+        GameObject::SaveToFile(Settings::mapFile);
 
     if(Input::isKeyRelased(GLFW_KEY_F1))
     {
@@ -87,7 +91,6 @@ void Game::input() /// Player input - remove it later
         c->transform.uScale(vec3(1,1,1));
         c->SetCameraType(CameraType::Perspective);
     }
-
 }
 
 void Game::Timer() /// Update deltaTime

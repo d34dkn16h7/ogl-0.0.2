@@ -11,16 +11,13 @@
 using namespace std;
 using namespace Tools;
 
-/*
- * Fix render stuff
- */
-
 class Geometry;
 class Physics;
 class Component;
 class GameObject : public Geometry
 {
 private:
+    static vector<GameObject*> gameObjects;
     vector<Component*> components; /// All components
     void LoadPrefab(string); /// Load and make prefab by nameToken
 public:
@@ -31,12 +28,22 @@ public:
     GameObject(string);
     virtual ~GameObject();
 
+    void Reg();
+    void UnReg();
+    void static Reg(GameObject*);
+    void static UnReg(GameObject*);
+
+    void static LoadFromFile(string);
+    void static SaveToFile(string);
+
     static GameObject* Find(string);
 
-    template <typename compType> void AddComponent() /// Add Component to this object
+    template <typename compType>
+    void AddComponent() /// Add Component to this object
         {components.push_back( new compType(this) );}
 
-    template <typename compType> static void AddComponent(GameObject* gmo) /// Add Component to object
+    template <typename compType>
+    static void AddComponent(GameObject* gmo) /// Add Component to object
         {gmo->components.push_back( new compType(gmo) );}
 
     template <typename compType>

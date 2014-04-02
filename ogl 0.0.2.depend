@@ -33,12 +33,12 @@
 	<vector>
 	<string>
 
-1371708250 d:\projects\git\ogl-0.0.2\src\component.h
+1396448022 d:\projects\git\ogl-0.0.2\src\component.h
 	<typeinfo>
 	<string>
 	<vector>
 
-1396371496 d:\projects\git\ogl-0.0.2\src\gameobject.h
+1396447595 d:\projects\git\ogl-0.0.2\src\gameobject.h
 	<stdexcept>
 	<typeinfo>
 	"tools.h"
@@ -63,7 +63,7 @@
 	<vector>
 	<string>
 
-1388703642 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
+1396447880 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
 	"map.h"
 	"input.h"
 	"camera.h"
@@ -73,7 +73,7 @@
 	"component.h"
 	"gameObject.h"
 
-1388703379 d:\projects\git\ogl-0.0.2\src\map.h
+1396447368 d:\projects\git\ogl-0.0.2\src\map.h
 	<glm/glm.hpp>
 	<stdexcept>
 	<iostream>
@@ -87,7 +87,7 @@
 	<glm/glm.hpp>
 	<GLFW/glfw3.h>
 
-1388703243 d:\projects\git\ogl-0.0.2\src\editor.h
+1396447895 d:\projects\git\ogl-0.0.2\src\editor.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glm/glm.hpp>
@@ -99,7 +99,7 @@
 	<vector>
 	"component.h"
 
-1389980485 source:d:\projects\git\ogl-0.0.2\src\game.cpp
+1396447949 source:d:\projects\git\ogl-0.0.2\src\game.cpp
 	"map.h"
 	"game.h"
 	"input.h"
@@ -110,7 +110,7 @@
 	"camera.h"
 	<string>
 
-1377943512 d:\projects\git\ogl-0.0.2\src\game.h
+1396447849 d:\projects\git\ogl-0.0.2\src\game.h
 	<glm/glm.hpp>
 
 1395763932 d:\projects\git\ogl-0.0.2\src\renderer.h
@@ -122,12 +122,13 @@
 	<vector>
 	<string>
 
-1396371471 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
+1396447963 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
 	"gameObject.h"
 	"renderer.h"
 	"collider2d.h"
 	"physics.h"
 	"tools.h"
+	"game.h"
 	"map.h"
 	<iostream>
 

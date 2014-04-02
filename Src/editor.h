@@ -13,7 +13,6 @@ using namespace glm;
 enum EditMode
 {PositionEdit,ScaleEdit,RotationEdit,ColorEdit};
 
-class Map;
 class GameObject;
 class Editor
 {
@@ -21,7 +20,6 @@ private:
     int sIndex = 0;
     bool isMultyEdit;
     vector<GameObject*> selection;
-    Map* targetMap;
     GameObject* onEdit;
     EditMode mode;
 
@@ -39,7 +37,6 @@ private:
 
     void MoveCam();
 public:
-    void SetTargetMap(Map*);
     void Update();
     bool isSelected(GameObject*);
     GameObject* GetSelection(unsigned int);
