@@ -1,4 +1,3 @@
-#include "map.h"
 #include "input.h"
 #include "camera.h"
 #include "editor.h"
@@ -43,9 +42,9 @@ void Editor::Update()
     if(Input::isKeyPressed(GLFW_KEY_2) )
         mode = EditMode::ScaleEdit;
     if(Input::isKeyPressed(GLFW_KEY_3) )
-        mode = EditMode::RotationEdit;   // Empty
+        mode = EditMode::RotationEdit;   /// Empty
     if(Input::isKeyPressed(GLFW_KEY_4) )
-        mode = EditMode::ColorEdit;   // Empty
+        mode = EditMode::ColorEdit;   /// Empty
 
     if(Camera::MainCamera->GetCameraType() == CameraType::Perspective && Input::mouseWDelta.y != 0) // No cam z move -> later y instead of z
     {

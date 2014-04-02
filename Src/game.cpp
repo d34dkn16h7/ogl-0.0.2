@@ -1,4 +1,3 @@
-#include "map.h"
 #include "game.h"
 #include "input.h"
 #include "editor.h"
@@ -57,10 +56,10 @@ void Game::Update() /// Update all
 
     if(isEditor) editor->Update();
 
-    input();
+    player_Input();
 }
 
-void Game::input() /// Player input - remove it later
+void Game::player_Input() /// Player input - remove it later
 {
     if(onControl != nullptr)
     {
@@ -69,8 +68,8 @@ void Game::input() /// Player input - remove it later
 
         if(p_onControl != nullptr)
         {
-            //if(Input::isKey('W')) p_onControl->Move(Speed * deltaTime * Up);
-            //if(Input::isKey('S')) p_onControl->Move(Speed * deltaTime * Down);
+            if(Input::isKey('W')) p_onControl->Move(Speed * deltaTime * Up);
+            if(Input::isKey('S')) p_onControl->Move(Speed * deltaTime * Down);
             if(Input::isKey('A')) p_onControl->Move(Speed * deltaTime * Left);
             if(Input::isKey('D')) p_onControl->Move(Speed * deltaTime * Right);
             if(Input::isKeyPressed(GLFW_KEY_SPACE)) p_onControl->Jump();

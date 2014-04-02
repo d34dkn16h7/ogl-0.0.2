@@ -4,8 +4,9 @@
 #include "physics.h"
 #include "tools.h"
 #include "game.h"
-#include "map.h"
 #include <iostream>
+
+//#define DBG_GMO_FIND
 
 const static string DataDir = "Data/";
 vector<GameObject*> GameObject::gameObjects;
@@ -27,15 +28,21 @@ GameObject::~GameObject()
 
 GameObject* GameObject::Find(string name)
 {
+#ifdef DBG_GMO_FIND
     cout << "Find : " << name << endl;
+#endif // DBG_GMO_FIND
     for(unsigned int i = 0 ; i < gameObjects.size(); i++)
     {
-        //cout << "-> : " << gameObjects[i]->nameToken << endl;
+#ifdef DBG_GMO_FIND
+        cout << "-> : " << gameObjects[i]->nameToken << endl;
+#endif // DBG_GMO_FIND
         if(name == gameObjects[i]->nameToken)
             return gameObjects[i];
     }
 
+#ifdef DBG_GMO_FIND
     cout << "No '" << name << "' found." << endl;
+#endif // DBG_GMO_FIND
     return nullptr;
 }
 

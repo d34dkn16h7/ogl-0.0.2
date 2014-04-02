@@ -22,8 +22,9 @@ public:
     Game();
     int Run();
     void Update();
-    void input();
     void Timer();
+
+    void player_Input(); /// Remove later
 };
 
 #endif // GAME_H
