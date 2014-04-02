@@ -16,10 +16,12 @@ using namespace Tools;
 class Geometry;
 class Physics;
 class Component;
-class GameObject : public Geometry , public Components
+
+class GameObject : public Geometry , public Components , public Transformable
 {
 private:
     static vector<GameObject*> gameObjects;
+
     void LoadPrefab(string); /// Load and make prefab by nameToken
 public:
     bool isActive;

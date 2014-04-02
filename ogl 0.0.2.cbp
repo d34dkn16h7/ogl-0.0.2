@@ -82,6 +82,7 @@
 		<Unit filename="Src/texture.cpp" />
 		<Unit filename="Src/texture.h" />
 		<Unit filename="Src/tools.h" />
+		<Unit filename="Src/transform.cpp" />
 		<Unit filename="Src/transform.h" />
 		<Extensions>
 			<code_completion />

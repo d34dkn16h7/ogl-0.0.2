@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1387840053 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
+1396458119 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
 	"camera.h"
 
-1387490202 d:\projects\git\ogl-0.0.2\src\camera.h
+1396458308 d:\projects\git\ogl-0.0.2\src\camera.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<string>
 	"transform.h"
 
-1388533784 d:\projects\git\ogl-0.0.2\src\transform.h
+1396458193 d:\projects\git\ogl-0.0.2\src\transform.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/glm.hpp>
 
@@ -38,7 +38,7 @@
 	<vector>
 	<typeinfo>
 
-1396455911 d:\projects\git\ogl-0.0.2\src\gameobject.h
+1396457901 d:\projects\git\ogl-0.0.2\src\gameobject.h
 	<stdexcept>
 	<typeinfo>
 	"tools.h"
@@ -176,7 +176,7 @@
 	"renderer.h"
 	"gameObject.h"
 
-1396455940 source:d:\projects\git\ogl-0.0.2\src\texture.cpp
+1396456130 source:d:\projects\git\ogl-0.0.2\src\texture.cpp
 	"tools.h"
 	"texture.h"
 
@@ -192,4 +192,7 @@
 
 1390857325 source:d:\projects\git\ogl-0.0.2\src\tools\token.cpp
 	"../tools.h"
+
+1396458065 source:d:\projects\git\ogl-0.0.2\src\transform.cpp
+	"transform.h"
 

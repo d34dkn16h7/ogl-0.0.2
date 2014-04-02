@@ -3,7 +3,7 @@
 Camera* Camera::MainCamera;
 
 Camera::Camera(int x,int y) :
-    mCamType(CameraType::Perspective),fow(60/** 45 **/), aspectRatio( (float)x / (float)y ), transform(this), ScreenSize( vec2(x,y) )
+    mCamType(CameraType::Perspective),fow(60/** 45 **/), aspectRatio( (float)x / (float)y ), ScreenSize( vec2(x,y) )
 {
     MainCamera = this;
     transform.aPosition(vec3(0,0,15)); // +?

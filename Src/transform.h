@@ -6,15 +6,7 @@
 
 using namespace glm;
 
-class Transformable
-{
-private:
-public:
-    virtual void MoveUpdate() {}
-    virtual void RotationUpdate() {}
-    virtual void ScaleUpdate() {}
-    virtual void GenerateMatrix() {}
-};
+class Transformable;
 
 class Transform
 {
@@ -26,16 +18,7 @@ private:
     vec3 mScale = vec3(1,1,1);
 
     mat4 mMatrix;
-    void MakeMatrix()
-    {
-        mMatrix = translate(mat4(1.0),mPosition);
-        mMatrix *= rotate(mat4(1.0),mRotation.x , vec3(0,1,0));
-        mMatrix *= rotate(mat4(1.0),mRotation.y , vec3(1,0,0));
-        mMatrix *= scale(mat4(1.0),mScale);
-
-        if(parent != nullptr)
-            parent->GenerateMatrix();
-    }
+    void MakeMatrix();
 public:
     vec3 forward = vec3(0,0,1),backward = -forward;
     vec3 left = vec3(-1,0,0),right = -left;
@@ -69,6 +52,20 @@ public:
         {return mScale;}
     mat4 gMatrix() const
         {return mMatrix;}
+};
+
+class Transformable
+{
+private:
+public:
+    Transform transform;
+
+    Transformable() : transform(this) {}
+
+    virtual void MoveUpdate() {}
+    virtual void RotationUpdate() {}
+    virtual void ScaleUpdate() {}
+    virtual void GenerateMatrix() {}
 };
 
 #endif // TRANSFORM_H

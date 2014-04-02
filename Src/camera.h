@@ -6,10 +6,6 @@
 #include <string>
 #include "transform.h"
 
-/*
-vec3 forward,backward;
-*/
-
 using namespace std;
 using namespace glm;
 
@@ -18,7 +14,7 @@ enum CameraType
     Orthographic,Perspective
 };
 
-class Camera : Transformable
+class Camera : public Transformable
 {
 private:
     CameraType mCamType;
@@ -32,7 +28,6 @@ private:
     mat4 camera;
     mat4 projection;
 public:
-    Transform transform;
     vec2 ScreenSize;
     static Camera* MainCamera;
     Camera(int,int);
