@@ -14,11 +14,10 @@ using namespace Tools;
 class Geometry;
 class Physics;
 class Component;
-class GameObject : public Geometry
+class GameObject : public Geometry , public Components
 {
 private:
     static vector<GameObject*> gameObjects;
-    vector<Component*> components; /// All components
     void LoadPrefab(string); /// Load and make prefab by nameToken
 public:
     bool isActive;
@@ -37,27 +36,6 @@ public:
     void static SaveToFile(string);
 
     static GameObject* Find(string);
-
-    template <typename compType>
-    void AddComponent() /// Add Component to this object
-        {components.push_back( new compType(this) );}
-
-    template <typename compType>
-    static void AddComponent(GameObject* gmo) /// Add Component to object
-        {gmo->components.push_back( new compType(gmo) );}
-
-    template <typename compType>
-    compType* GetComponent() /// Get Component
-    {
-        for(auto c : components)
-            if(c->GetType() == typeid(compType*).hash_code() )
-                return (compType*)c;
-
-        return nullptr;
-    }
-
-    unsigned int ComponentCount();
-    void DestroyComponents(); /// Delete all components
 };
 
 #endif // GAMEOBJECT_H

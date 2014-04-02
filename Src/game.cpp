@@ -6,7 +6,6 @@
 #include "gameObject.h"
 
 #include "camera.h"
-Game* Game::ins;
 Physics* Game::p_onControl = nullptr;
 GameObject* Game::onControl;
 GameObject* Game::player;
@@ -17,6 +16,14 @@ static vec3 Zero(0,0,0);
 static vec3 Up(0,1.0001,0) , Down = -Up;
 static vec3 Left(-1.0001,0,0) , Right = -Left;
 static vec3 Forward(0,0,-1.0001) , Backward = -Forward;
+
+Game::Game() : editor( new Editor() )
+{
+    Tools::Settings::LoadSettings();
+    isOpen = Renderer::Setup(1024,576);
+    Tools::Settings::LoadFiles();
+    Input::Init();
+}
 
 int Game::Run()
 {
@@ -36,15 +43,7 @@ int Game::Run()
     glfwTerminate();
     return 0;
 }
-#include <string>
-Game::Game() : editor( new Editor() )
-{
-    ins = this;
-    Tools::Settings::LoadSettings();
-    isOpen = Renderer::Setup(1024,576);
-    Tools::Settings::LoadFiles();
-    Input::Init();
-}
+
 
 void Game::Update() /// Update all
 {

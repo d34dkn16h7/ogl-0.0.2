@@ -5,17 +5,16 @@
 
 using namespace glm;
 
-class Map;
 class Editor;
 class Physics;
 class GameObject;
 class Game
 {
 public:
-    static Game* ins;
     static GameObject* onControl;
     static GameObject* player;
     static Physics* p_onControl;
+
     static float deltaTime,lastTime,Speed;
     static bool isOpen,isEditor;
     Editor* editor;

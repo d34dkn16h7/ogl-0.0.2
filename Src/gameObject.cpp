@@ -11,7 +11,7 @@
 const static string DataDir = "Data/";
 vector<GameObject*> GameObject::gameObjects;
 
-GameObject::GameObject(string name) : isActive(true)
+GameObject::GameObject(string name) : Components(this) , isActive(true)
 {
     Reg();
     nameToken = name;
@@ -138,17 +138,4 @@ void GameObject::LoadPrefab(string prefPath) /// Load and make prefab by nameTok
             if( (tCollider = GetComponent<Collider2d>()) != nullptr)
                 tCollider->sOffset(token.GetNVec3());
     }
-}
-
-unsigned int GameObject::ComponentCount()
-{
-    return components.size();
-}
-
-void GameObject::DestroyComponents() /// Delete all components
-{
-    for(Component* c : components)
-        delete c;
-
-    components.clear();
 }

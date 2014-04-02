@@ -33,12 +33,12 @@
 	<vector>
 	<string>
 
-1396448022 d:\projects\git\ogl-0.0.2\src\component.h
-	<typeinfo>
+1396454234 d:\projects\git\ogl-0.0.2\src\component.h
 	<string>
 	<vector>
+	<typeinfo>
 
-1396447595 d:\projects\git\ogl-0.0.2\src\gameobject.h
+1396454094 d:\projects\git\ogl-0.0.2\src\gameobject.h
 	<stdexcept>
 	<typeinfo>
 	"tools.h"
@@ -63,8 +63,7 @@
 	<vector>
 	<string>
 
-1396447880 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
-	"map.h"
+1396453461 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
 	"input.h"
 	"camera.h"
 	"editor.h"
@@ -87,20 +86,16 @@
 	<glm/glm.hpp>
 	<GLFW/glfw3.h>
 
-1396447895 d:\projects\git\ogl-0.0.2\src\editor.h
-	<GL/glew.h>
-	<GLFW/glfw3.h>
+1396453597 d:\projects\git\ogl-0.0.2\src\editor.h
 	<glm/glm.hpp>
 	<vector>
-	<string>
 
 1395789222 d:\projects\git\ogl-0.0.2\src\physics.h
 	<glm/glm.hpp>
 	<vector>
 	"component.h"
 
-1396447949 source:d:\projects\git\ogl-0.0.2\src\game.cpp
-	"map.h"
+1396453319 source:d:\projects\git\ogl-0.0.2\src\game.cpp
 	"game.h"
 	"input.h"
 	"editor.h"
@@ -108,9 +103,8 @@
 	"renderer.h"
 	"gameObject.h"
 	"camera.h"
-	<string>
 
-1396447849 d:\projects\git\ogl-0.0.2\src\game.h
+1396453326 d:\projects\git\ogl-0.0.2\src\game.h
 	<glm/glm.hpp>
 
 1395763932 d:\projects\git\ogl-0.0.2\src\renderer.h
@@ -122,14 +116,13 @@
 	<vector>
 	<string>
 
-1396447963 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
+1396454269 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
 	"gameObject.h"
 	"renderer.h"
 	"collider2d.h"
 	"physics.h"
 	"tools.h"
 	"game.h"
-	"map.h"
 	<iostream>
 
 1396371566 source:d:\projects\git\ogl-0.0.2\src\geometry.cpp
@@ -163,7 +156,7 @@
 	"gameObject.h"
 	"physics.h"
 
-1395933419 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
+1396454319 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
 	<typeinfo>
 	"physics.h"
 	"collider2d.h"
@@ -173,7 +166,7 @@
 	"tools.h"
 	"program.h"
 
-1396371308 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
+1396453493 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
 	"game.h"
 	"tools.h"
 	"editor.h"

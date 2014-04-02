@@ -1,11 +1,10 @@
 #ifndef EDITOR_H
 #define EDITOR_H
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <vector>
-#include <string>
+
+/// This should be static
 
 using namespace std;
 using namespace glm;
@@ -19,8 +18,7 @@ class Editor
 private:
     int sIndex = 0;
     bool isMultyEdit;
-    vector<GameObject*> selection;
-    GameObject* onEdit;
+    static vector<GameObject*> selection;
     EditMode mode;
 
     void Edit();
@@ -38,7 +36,7 @@ private:
     void MoveCam();
 public:
     void Update();
-    bool isSelected(GameObject*);
+    static bool isSelected(GameObject*);
     GameObject* GetSelection(unsigned int);
 };
 

@@ -6,6 +6,8 @@
 #include "component.h"
 #include "gameObject.h"
 
+vector<GameObject*> Editor::selection;
+
 void Editor::Update()
 {
     Transform* t = &Camera::MainCamera->transform;
@@ -16,25 +18,6 @@ void Editor::Update()
 
     if(Input::isKeyPressed(GLFW_KEY_E))
         UpdateSelection( GameObject::Find("player") );
-
-/*
-    if(Input::isKeyPressed(GLFW_KEY_DOWN))
-        if(sIndex > 0)
-        {
-            sIndex--;
-            selection.clear();
-            selection.push_back(Map::ins->data[sIndex]);
-        }
-    if(Input::isKeyPressed(GLFW_KEY_UP))
-        if(sIndex < Map::ins->data.size())
-        {
-            sIndex++;
-            selection.clear();
-            selection.push_back(Map::ins->data[sIndex]);
-        }
-
-    if(Input::isKeyPressed(GLFW_KEY_SPACE))
-        selection.clear();*/
 
     /// Why not GUI?
     if(Input::isKeyPressed(GLFW_KEY_1) )

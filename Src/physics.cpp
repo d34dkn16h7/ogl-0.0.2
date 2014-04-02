@@ -9,7 +9,7 @@ Physics::Physics(GameObject* own) :
     Component(typeid(this).hash_code() , own) , constForce( vec3(0,0,0) )
 {
     owner->physics = this;
-    GameObject::AddComponent<Collider2d>(owner);
+    owner->AddComponent<Collider2d>();
     Reg(this);
     Start();
 }
