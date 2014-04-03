@@ -65,9 +65,9 @@ public:
 struct ColliderHit
 {
     vec2 dist;
-    Collider2d* collider;
+    Collider2d* collider = nullptr;
     ColliderHit() : collider(nullptr) {}
-    ColliderHit(Collider2d* c,vec2 d = vec2(0,0) ) : collider(c) , dist(d) {}
+    ColliderHit(Collider2d* c,vec2 d = vec2(0,0) ) : dist(d), collider(c) {}
 };
 
 #endif // COLLIDER_H

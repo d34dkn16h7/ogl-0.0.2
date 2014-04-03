@@ -1,29 +1,29 @@
 # depslib dependency file v1.0
-1396458119 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
+1396450919 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
 	"camera.h"
 
-1396458308 d:\projects\git\ogl-0.0.2\src\camera.h
+1396465167 d:\projects\git\ogl-0.0.2\src\camera.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<string>
 	"transform.h"
 
-1396458193 d:\projects\git\ogl-0.0.2\src\transform.h
+1396463326 d:\projects\git\ogl-0.0.2\src\transform.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/glm.hpp>
 
-1395840906 source:d:\projects\git\ogl-0.0.2\src\collider2d.cpp
+1396464152 source:d:\projects\git\ogl-0.0.2\src\collider2d.cpp
 	<typeinfo>
 	"collider2d.h"
 	"gameObject.h"
 
-1395838312 d:\projects\git\ogl-0.0.2\src\collider2d.h
+1396463890 d:\projects\git\ogl-0.0.2\src\collider2d.h
 	<glm/glm.hpp>
 	<vector>
 	"tools.h"
 	"component.h"
 
-1391290251 d:\projects\git\ogl-0.0.2\src\tools.h
+1391283051 d:\projects\git\ogl-0.0.2\src\tools.h
 	<glm/glm.hpp>
 	<iostream>
 	<stdlib.h>
@@ -33,12 +33,11 @@
 	<vector>
 	<string>
 
-1396454443 d:\projects\git\ogl-0.0.2\src\component.h
-	<string>
+1396465219 d:\projects\git\ogl-0.0.2\src\component.h
 	<vector>
 	<typeinfo>
 
-1396457901 d:\projects\git\ogl-0.0.2\src\gameobject.h
+1396450701 d:\projects\git\ogl-0.0.2\src\gameobject.h
 	<stdexcept>
 	<typeinfo>
 	"tools.h"
@@ -46,7 +45,7 @@
 	"component.h"
 	"transform.h"
 
-1396371546 d:\projects\git\ogl-0.0.2\src\geometry.h
+1396364346 d:\projects\git\ogl-0.0.2\src\geometry.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/glm.hpp>
 	<SOIL/SOIL.h>
@@ -56,14 +55,14 @@
 	<string>
 	"texture.h"
 
-1396455975 d:\projects\git\ogl-0.0.2\src\texture.h
+1396448775 d:\projects\git\ogl-0.0.2\src\texture.h
 	<unordered_map>
 	<SOIL/SOIL.h>
 	<GL/glew.h>
 	<vector>
 	<string>
 
-1396453461 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
+1396477751 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
 	"input.h"
 	"camera.h"
 	"editor.h"
@@ -81,21 +80,21 @@
 	<string>
 	<vector>
 
-1376379020 d:\projects\git\ogl-0.0.2\src\input.h
+1376371820 d:\projects\git\ogl-0.0.2\src\input.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	<GLFW/glfw3.h>
 
-1396453597 d:\projects\git\ogl-0.0.2\src\editor.h
+1396477841 d:\projects\git\ogl-0.0.2\src\editor.h
 	<glm/glm.hpp>
 	<vector>
 
-1395789222 d:\projects\git\ogl-0.0.2\src\physics.h
+1395782022 d:\projects\git\ogl-0.0.2\src\physics.h
 	<glm/glm.hpp>
 	<vector>
 	"component.h"
 
-1396453319 source:d:\projects\git\ogl-0.0.2\src\game.cpp
+1396446119 source:d:\projects\git\ogl-0.0.2\src\game.cpp
 	"game.h"
 	"input.h"
 	"editor.h"
@@ -104,10 +103,9 @@
 	"gameObject.h"
 	"camera.h"
 
-1396453326 d:\projects\git\ogl-0.0.2\src\game.h
-	<glm/glm.hpp>
+1396478047 d:\projects\git\ogl-0.0.2\src\game.h
 
-1395763932 d:\projects\git\ogl-0.0.2\src\renderer.h
+1395756732 d:\projects\git\ogl-0.0.2\src\renderer.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<SOIL/SOIL.h>
@@ -116,7 +114,7 @@
 	<vector>
 	<string>
 
-1396455924 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
+1396448724 source:d:\projects\git\ogl-0.0.2\src\gameobject.cpp
 	"gameObject.h"
 	"renderer.h"
 	"collider2d.h"
@@ -125,13 +123,13 @@
 	"game.h"
 	<iostream>
 
-1396371566 source:d:\projects\git\ogl-0.0.2\src\geometry.cpp
+1396364366 source:d:\projects\git\ogl-0.0.2\src\geometry.cpp
 	"program.h"
 	"geometry.h"
 	"renderer.h"
 	"tools.h"
 
-1372844930 d:\projects\git\ogl-0.0.2\src\program.h
+1372837730 d:\projects\git\ogl-0.0.2\src\program.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<glm/glm.hpp>
@@ -141,12 +139,12 @@
 	<string>
 	<vector>
 
-1387837758 source:d:\projects\git\ogl-0.0.2\src\input.cpp
+1387830558 source:d:\projects\git\ogl-0.0.2\src\input.cpp
 	"input.h"
 	"camera.h"
 	"renderer.h"
 
-1373958340 source:d:\projects\git\ogl-0.0.2\src\main.cpp
+1396477562 source:d:\projects\git\ogl-0.0.2\src\main.cpp
 	"game.h"
 
 1395789373 source:d:\projects\git\ogl-0.0.2\src\map.cpp
@@ -156,17 +154,17 @@
 	"gameObject.h"
 	"physics.h"
 
-1396454319 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
+1396464059 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
 	<typeinfo>
 	"physics.h"
 	"collider2d.h"
 	"gameObject.h"
 
-1372907634 source:d:\projects\git\ogl-0.0.2\src\program.cpp
+1372900434 source:d:\projects\git\ogl-0.0.2\src\program.cpp
 	"tools.h"
 	"program.h"
 
-1396453493 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
+1396446293 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
 	"game.h"
 	"tools.h"
 	"editor.h"
@@ -176,23 +174,23 @@
 	"renderer.h"
 	"gameObject.h"
 
-1396456130 source:d:\projects\git\ogl-0.0.2\src\texture.cpp
+1396448930 source:d:\projects\git\ogl-0.0.2\src\texture.cpp
 	"tools.h"
 	"texture.h"
 
-1390857271 source:d:\projects\git\ogl-0.0.2\src\tools\file.cpp
+1390850071 source:d:\projects\git\ogl-0.0.2\src\tools\file.cpp
 	"../tools.h"
 
-1391290332 source:d:\projects\git\ogl-0.0.2\src\tools\settings.cpp
+1391283132 source:d:\projects\git\ogl-0.0.2\src\tools\settings.cpp
 	"../tools.h"
 	"../texture.h"
 
-1390857315 source:d:\projects\git\ogl-0.0.2\src\tools\str.cpp
+1390850115 source:d:\projects\git\ogl-0.0.2\src\tools\str.cpp
 	"../tools.h"
 
-1390857325 source:d:\projects\git\ogl-0.0.2\src\tools\token.cpp
+1390850125 source:d:\projects\git\ogl-0.0.2\src\tools\token.cpp
 	"../tools.h"
 
-1396458065 source:d:\projects\git\ogl-0.0.2\src\transform.cpp
+1396463244 source:d:\projects\git\ogl-0.0.2\src\transform.cpp
 	"transform.h"
 

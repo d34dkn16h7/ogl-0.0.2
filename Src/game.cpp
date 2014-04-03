@@ -9,15 +9,15 @@
 Physics* Game::p_onControl = nullptr;
 GameObject* Game::onControl;
 GameObject* Game::player;
-bool Game::isOpen,Game::isEditor;
-float Game::deltaTime,Game::lastTime,Game::Speed;
+bool Game::isOpen;
+float Game::deltaTime,Game::lastTime;
 
 static vec3 Zero(0,0,0);
 static vec3 Up(0,1.0001,0) , Down = -Up;
 static vec3 Left(-1.0001,0,0) , Right = -Left;
 static vec3 Forward(0,0,-1.0001) , Backward = -Forward;
 
-Game::Game() : editor( new Editor() )
+Game::Game()
 {
     Tools::Settings::LoadSettings();
     isOpen = Renderer::Setup(1024,576);
@@ -27,8 +27,6 @@ Game::Game() : editor( new Editor() )
 
 int Game::Run()
 {
-    Speed = 15;
-    isEditor = true;
     GameObject::LoadFromFile(Settings::mapFile);
     lastTime = glfwGetTime();
     onControl = player;
@@ -47,23 +45,26 @@ int Game::Run()
 
 void Game::Update() /// Update all
 {
-    if( Input::isKeyPressed(GLFW_KEY_HOME))
-        isEditor = !isEditor;
-
     Input::Update();
-    Physics::UpdateAll();
 
-    if(isEditor) editor->Update();
+    Editor::Update();
+    Physics::UpdateAll();
 
     player_Input();
 }
 
+float Speed  = 15;
 void Game::player_Input() /// Player input - remove it later
 {
     if(onControl != nullptr)
     {
         if(p_onControl == nullptr)
-            p_onControl = onControl->GetComponent<Physics>();
+        {
+            if(onControl->HasComponent<Physics>())
+                p_onControl = onControl->GetComponent<Physics>();
+            else
+                p_onControl = onControl->AddComponent<Physics>();
+        }
 
         if(p_onControl != nullptr)
         {

@@ -1,13 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <glm/glm.hpp>
-
-using namespace glm;
-
 class Editor;
 class Physics;
 class GameObject;
+
 class Game
 {
 public:
@@ -15,9 +12,8 @@ public:
     static GameObject* player;
     static Physics* p_onControl;
 
-    static float deltaTime,lastTime,Speed;
-    static bool isOpen,isEditor;
-    Editor* editor;
+    static float deltaTime,lastTime;
+    static bool isOpen;
     Game();
     int Run();
     void Update();

@@ -10,7 +10,7 @@ Collider2d::Collider2d(GameObject* own) :
     Collider2d(own , Rect(1,1) ) {}
 
 Collider2d::Collider2d(GameObject* own , Rect r) :
-    Component(typeid(this).hash_code() , own)
+    Component(typeid(this).hash_code() , own) , ysd(ySideN::None) , xsd(xSideN::None)
 {
     mRect = rect = r;
     colliders.push_back(this);
@@ -48,12 +48,12 @@ vector<GameObject*> Collider2d::GetAll(vec3 pos) /// Get all colliders who intes
     for(Collider2d* c : colliders)
     {
         Rect r( c->rect );
-        r.Scale( c->owner->transform.gScale());
-        r.AddOffset( c->owner->transform.gPosition());
+        r.Scale( c->m_owner->transform.gScale());
+        r.AddOffset( c->m_owner->transform.gPosition());
 
         if( pos.x > r.xmi && pos.x < r.xma )
             if( pos.y > r.ymi && pos.y < r.yma )
-                val.push_back(c->owner);
+                val.push_back(c->m_owner);
     }
 
     return val;
@@ -78,7 +78,7 @@ vector<ColliderHit> Collider2d::UpdateStatus()
 
 vector<ColliderHit> Collider2d::Intersect( Collider2d* target ) /// Wrapper to Intersect( Collider2d* , vec3 )
 {
-    return Intersect( target, target->owner->transform.gPosition() );
+    return Intersect( target, target->m_owner->transform.gPosition() );
 }
 
 vector<ColliderHit> Collider2d::Intersect(vec3 nPos) /// Wrapper to Intersect( Collider2d* , vec3 )
@@ -101,7 +101,7 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
 {
     vector<ColliderHit> val;
     Rect r(target->rect);
-    r.Scale(target->owner->transform.gScale());
+    r.Scale(target->m_owner->transform.gScale());
     r.AddOffset(uPos);
 
 
@@ -114,8 +114,8 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
             continue;
 
         Rect cr( c->rect);
-        cr.Scale(c->owner->transform.gScale());
-        cr.AddOffset(c->owner->transform.gPosition());
+        cr.Scale(c->m_owner->transform.gScale());
+        cr.AddOffset(c->m_owner->transform.gPosition());
 
         bool right  = isIn(r.xmi,cr.xmi,cr.xma);
         bool left   = isIn(r.xma,cr.xmi,cr.xma);

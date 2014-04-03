@@ -1,7 +1,6 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <string>
 #include <vector>
 #include <typeinfo>
 
@@ -14,16 +13,15 @@ class Component
 private:
     size_t typeHash;
 public:
-    GameObject* owner;
+    GameObject* m_owner;
 
-    Component(size_t type ,GameObject* own) : typeHash(type) , owner(own) {}
+    Component(size_t type ,GameObject* owner) : typeHash(type) , m_owner(owner) {}
     virtual ~Component() {}
 
     virtual void Start() = 0;
     virtual void Update() = 0;
     virtual void UnReg() {}
-    size_t GetType()
-        {return typeHash;}
+    size_t GetType() {return typeHash;}
 };
 
 class Components /// Manager of Component
@@ -35,9 +33,11 @@ public:
     Components(GameObject* owner) : m_owner(owner){}
 
     template <typename compType>
-    void AddComponent() /// Add Component to this object
+    compType* AddComponent() /// Add Component and return the pointer of it
     {
-        m_components.push_back( new compType(m_owner) );
+        compType* tComp = new compType(m_owner);
+        m_components.push_back(tComp);
+        return tComp;
     }
 
     template <typename compType>

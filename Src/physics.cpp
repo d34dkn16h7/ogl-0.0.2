@@ -5,11 +5,11 @@
 
 vector<Physics*> Physics::physics; /// List of registered objects
 
-Physics::Physics(GameObject* own) :
-    Component(typeid(this).hash_code() , own) , constForce( vec3(0,0,0) )
+Physics::Physics(GameObject* owner) :
+    Component(typeid(this).hash_code() , owner) , constForce( vec3(0,0,0) )
 {
-    owner->physics = this;
-    owner->AddComponent<Collider2d>();
+    m_owner->physics = this;
+    collider = m_owner->AddComponent<Collider2d>();
     Reg(this);
     Start();
 }
@@ -19,10 +19,7 @@ Physics::~Physics() /// Unregister from update list
     UnReg(this);
 }
 
-void Physics::Start()
-{
-    collider = owner->GetComponent<Collider2d>();
-}
+void Physics::Start() {}
 
 void Physics::Jump()
 {
@@ -37,7 +34,7 @@ float gPositive(float f)
 
 void Physics::Move(vec3 val) /// Move by val if not colliding
 {
-    vec3 cPos = owner->transform.gPosition() + val;
+    vec3 cPos = m_owner->transform.gPosition() + val;
 
     if(collider != nullptr)
     {
@@ -62,7 +59,7 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
         cout <<"xPlus " << xPlus << endl;*/
 
         if(cl.size() == 0)
-            owner->transform.uPosition(cPos);
+            m_owner->transform.uPosition(cPos);
         else
         {
             vec2 d = cl[0].dist;
@@ -86,11 +83,11 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
             if(gPositive(cPos.y) < gPositive(d.y))
                 d.y = 0;
 
-            owner->transform.aPosition( vec3(d.x,d.y,0) );
+            m_owner->transform.aPosition( vec3(d.x,d.y,0) );
         }
     }
     else /// Don't have collider so just move
-        owner->transform.uPosition(cPos);
+        m_owner->transform.uPosition(cPos);
 }
 
 void Physics::Push(vec3 totalForce, float speed) /// Empty
@@ -105,7 +102,7 @@ void Physics::AddConstantForce(vec3 force) /// Add force to constForce
 
 void Physics::Update() /// Update this object
 {
-    if(owner->isActive)
+    if(m_owner->isActive)
     {
         // if(owner->nameToken == "player") cout << (collider->ysd) << endl;
 

@@ -21,8 +21,7 @@ private:
     int fow;
     float aspectRatio;
 
-    vec3 lookTarget = vec3(0,0,-.1f);//vec3(-.1f,0,0);
-
+    vec3 lookTarget = vec3(0,0,-.1f);
 
     mat4 look;
     mat4 camera;

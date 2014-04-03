@@ -13,31 +13,32 @@ enum EditMode
 {PositionEdit,ScaleEdit,RotationEdit,ColorEdit};
 
 class GameObject;
+
 class Editor
 {
 private:
-    int sIndex = 0;
-    bool isMultyEdit;
     static vector<GameObject*> selection;
-    EditMode mode;
 
-    void Edit();
-    void PutObject();
-    void DeleteObject();
-    void SelectObjects();
-    void UpdateSelection(GameObject*);
-    void UpdateSelections(const vector<GameObject*> );
-    void RemoveSelection(GameObject*);
-    void ClearSelection();
+    static EditMode mode;
+    static bool isMultyEdit;
 
-    void aaScale(vec3); /// Add scale to all selected objects
-    void aaPosition(vec3); /// Move all selected objects
+    static void Edit();
+    static void PutObject();
+    static void DeleteObject();
+    static void SelectObjects();
+    static void UpdateSelection(GameObject*);
+    static void UpdateSelections(const vector<GameObject*> );
+    static void RemoveSelection(GameObject*);
+    static void ClearSelection();
 
-    void MoveCam();
+    static void aaScale(vec3); /// Add scale to all selected objects
+    static void aaPosition(vec3); /// Move all selected objects
+
+    static void MoveCam();
 public:
-    void Update();
+    static void Update();
     static bool isSelected(GameObject*);
-    GameObject* GetSelection(unsigned int);
+    static GameObject* GetSelection(unsigned int);
 };
 
 #endif // EDITOR_H

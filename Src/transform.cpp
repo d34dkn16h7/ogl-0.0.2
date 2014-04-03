@@ -7,6 +7,6 @@ void Transform::MakeMatrix()
     mMatrix *= rotate(mat4(1.0),mRotation.y , vec3(1,0,0));
     mMatrix *= scale(mat4(1.0),mScale);
 
-    if(parent != nullptr)
-        parent->GenerateMatrix();
+    //if(parent != nullptr)
+    //    parent->GenerateMatrix();
 }

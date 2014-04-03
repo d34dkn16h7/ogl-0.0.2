@@ -6,6 +6,8 @@
 #include "component.h"
 #include "gameObject.h"
 
+EditMode Editor::mode;
+bool Editor::isMultyEdit;
 vector<GameObject*> Editor::selection;
 
 void Editor::Update()
