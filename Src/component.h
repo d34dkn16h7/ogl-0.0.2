@@ -13,9 +13,10 @@ class Component
 private:
     size_t typeHash;
 public:
+    bool active;
     GameObject* m_owner;
 
-    Component(size_t type ,GameObject* owner) : typeHash(type) , m_owner(owner) {}
+    Component(size_t type ,GameObject* owner) : typeHash(type) , m_owner(owner) , active(true) {}
     virtual ~Component() {}
 
     virtual void Start() = 0;
@@ -30,7 +31,7 @@ private:
     GameObject* m_owner;
     vector<Component*> m_components;
 public:
-    Components(GameObject* owner) : m_owner(owner){}
+    Components(GameObject* owner) : m_owner(owner) {}
 
     template <typename compType>
     compType* AddComponent() /// Add Component and return the pointer of it

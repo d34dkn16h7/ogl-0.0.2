@@ -9,7 +9,7 @@
 const static string DataDir = "Data/";
 vector<GameObject*> GameObject::gameObjects;
 
-GameObject::GameObject(string name) : Components(this) , isActive(true)
+GameObject::GameObject(string name) : Components(this) , active(true)
 {
     Reg();
     nameToken = name;

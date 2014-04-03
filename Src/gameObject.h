@@ -24,24 +24,23 @@ private:
 
     void LoadPrefab(string); /// Load and make prefab by nameToken
 public:
-    bool isActive;
-    Transform transform;
+    bool active;
 
     Physics* physics = nullptr; /// for easy access
 
     GameObject(string);
     virtual ~GameObject();
 
-    void static LoadFromFile(string);
-    void static SaveToFile(string);
+    static void LoadFromFile(string);
+    static void SaveToFile(string);
 
     static GameObject* Find(string);
 
     void Reg();
-    void static Reg(GameObject*);
+    static void Reg(GameObject*);
 
     void UnReg();
-    void static UnReg(GameObject*);
+    static void UnReg(GameObject*);
 };
 
 #endif // GAMEOBJECT_H

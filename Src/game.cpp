@@ -72,6 +72,7 @@ void Game::player_Input() /// Player input - remove it later
             if(Input::isKey('S')) p_onControl->Move(Speed * deltaTime * Down);
             if(Input::isKey('A')) p_onControl->Move(Speed * deltaTime * Left);
             if(Input::isKey('D')) p_onControl->Move(Speed * deltaTime * Right);
+
             if(Input::isKeyPressed(GLFW_KEY_SPACE)) p_onControl->Jump();
         }
     }

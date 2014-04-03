@@ -15,7 +15,7 @@ Camera::Camera(int x,int y) :
 
 void Camera::GenerateMatrix()
 {
-    look = lookAt(transform.gPosition() * 2.0f,( transform.gPosition()  * 2.0f)+ lookTarget, vec3(0,1,0));
+    look = lookAt(transform.gPosition() * 2.0f,( transform.gPosition()  * 2.0f) + lookTarget, vec3(0,1,0));
     projection = GetProjection();
     camera = projection * look * transform.gMatrix();
 }

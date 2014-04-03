@@ -1,3 +1,5 @@
+#define DBG_RENDERER_INFO
+
 #include "game.h"
 #include "tools.h"
 #include "editor.h"
@@ -6,7 +8,6 @@
 #include "geometry.h"
 #include "renderer.h"
 #include "gameObject.h"
-
 
 const string windowName = "oGL 3.2 -0.0.2";
 
@@ -109,7 +110,9 @@ bool Renderer::Setup(int w,int h) /// Setup GLFW - GLEW + Window + Shaders
     if(Tools::Settings::isModernGL)
         prog = new Program(Tools::Settings::vertexShaderFileName,Tools::Settings::fragmentShaderFileName,"Model");
 
+#ifdef DBG_RENDERER_INFO
     PrintRendererInfo();
+#endif // DBG_RENDERER_INFO
 
     return true;
 }

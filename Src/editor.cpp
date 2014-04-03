@@ -74,7 +74,7 @@ void Editor::PutObject() /// Crate new gameObject(cube)
         ClearSelection();
 
     GameObject* edit = new GameObject("cube");
-    edit->isActive = false;
+    edit->active = false;
     vec3 nPos = vec3 ( Camera::MainCamera->transform.gPosition() );
     nPos.z = 0;
     nPos.x /= 15;
@@ -113,12 +113,12 @@ void Editor::UpdateSelection(GameObject* obj) /// Add object to selected vector
 
     if(!isSelected(obj))
     {
-        obj->isActive = false;
+        obj->active = false;
         selection.push_back(obj);
     }
     else
     {
-        obj->isActive = true;
+        obj->active = true;
         RemoveSelection(obj);
     }
 }
@@ -128,7 +128,7 @@ void Editor::RemoveSelection(GameObject* obj) /// Deselect
     for(unsigned int i = 0;i < selection.size();i++)
         if(selection[i] == obj)
         {
-            obj->isActive = true;
+            obj->active = true;
             selection.erase(selection.begin() + i);
         }
 }
@@ -136,7 +136,7 @@ void Editor::RemoveSelection(GameObject* obj) /// Deselect
 void Editor::ClearSelection() /// Reset Selection
 {
     for(GameObject* gmo : selection)
-        gmo->isActive = true;
+        gmo->active = true;
 
     selection.clear();
 }
@@ -169,6 +169,7 @@ void Editor::MoveCam()
     float orthoSpeed = 1,perspSpeed = .001f * t->gPosition().z;
     float speed = c->GetCameraType() == CameraType::Orthographic ? orthoSpeed : perspSpeed ;
     vec2 val = Input::mouseDelta;
+
     t->aPosition((t->left * val.x * speed) + (t->up * val.y * speed));
 }
 
@@ -183,5 +184,5 @@ bool Editor::isSelected(GameObject* val) /// Is object selected
 
 GameObject* Editor::GetSelection(unsigned int index)
 {
-    return (selection.size()+1 >= index ? selection[index] : nullptr);
+    return ((selection.size() + 1) >= index ? selection[index] : nullptr);
 }

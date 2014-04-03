@@ -2,6 +2,7 @@
 #include "physics.h"
 #include "collider2d.h"
 #include "gameObject.h"
+#include "component.h"
 
 vector<Physics*> Physics::physics; /// List of registered objects
 
@@ -102,10 +103,8 @@ void Physics::AddConstantForce(vec3 force) /// Add force to constForce
 
 void Physics::Update() /// Update this object
 {
-    if(m_owner->isActive)
+    if(m_owner->active && active)
     {
-        // if(owner->nameToken == "player") cout << (collider->ysd) << endl;
-
         vec3 tForce = constForce;
 
         for(unsigned int i = 0;i < forcePList.size();i++)

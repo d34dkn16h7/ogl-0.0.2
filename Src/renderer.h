@@ -1,9 +1,6 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-class Geometry;
-class Program;
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <SOIL/SOIL.h>
@@ -16,7 +13,9 @@ using namespace std;
 
 class Camera;
 class Program;
+class Geometry;
 class GameObject;
+
 class Renderer
 {
 private:
@@ -30,7 +29,7 @@ public:
 
     static void RenderAll();
     static void RenderObjects();
-    static void DrawLegacy(); // Not Working
+    static void DrawLegacy(); /// Not Working
 
     static void RegObject(GameObject*);
     static void UnRegObject(GameObject*);
