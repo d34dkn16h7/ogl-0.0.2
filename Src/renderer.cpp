@@ -1,5 +1,3 @@
-#define DBG_RENDERER_INFO
-
 #include "game.h"
 #include "tools.h"
 #include "editor.h"

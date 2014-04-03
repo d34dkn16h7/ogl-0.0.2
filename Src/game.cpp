@@ -48,6 +48,7 @@ void Game::Update() /// Update all
     Input::Update();
 
     Editor::Update();
+
     Physics::UpdateAll();
 
     player_Input();

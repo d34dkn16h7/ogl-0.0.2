@@ -33,6 +33,11 @@ float gPositive(float f)
     return f > 0 ? f : -f;
 }
 
+void Physics::Move(vec2 val)
+{
+    Move(vec3(val.x,val.y,0));
+}
+
 void Physics::Move(vec3 val) /// Move by val if not colliding
 {
     vec3 cPos = m_owner->transform.gPosition() + val;
@@ -41,50 +46,28 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
     {
         vector<ColliderHit> cl = collider->Intersect(cPos);
 
-        /*bool xMinus,xPlus,yMinus,yPlus;
-        xMinus = xPlus = yMinus = yPlus = false;
-        for(Collider* c : cl)
-        {
-            if(c->c1 == Side::Right)
-                xPlus = true;
-            else if(c->c1 == Side::Left)
-                xMinus = true;
-
-            if(c->c2 == Side::Top)
-                yPlus = true;
-            else if(c->c2 == Side::Bottom)
-                yMinus = true;
-        }
-
-        cout <<"xMinus " <<  xMinus << endl;
-        cout <<"xPlus " << xPlus << endl;*/
-
         if(cl.size() == 0)
             m_owner->transform.uPosition(cPos);
         else
         {
+            Collider2d *tCld = cl[0].collider;
             vec2 d = cl[0].dist;
+            d.x = 0;
             for(ColliderHit c : cl)
             {
-                if(gPositive(c.dist.x) < d.x)
-                    d.x = c.dist.x;
-
-                if(gPositive(c.dist.y) < d.y)
+                if(gPositive(c.dist.y) < gPositive(d.y))
+                {
+                    tCld = c.collider;
                     d.y = c.dist.y;
+                }
             }
 
-            /*
-            if(owner->nameToken == "player")
-            {
-                cout << d.x << ":" << d.y << endl;
-            }*/
-
-            if(gPositive(cPos.x) < gPositive(d.x))
-                d.y = 0;
-            if(gPositive(cPos.y) < gPositive(d.y))
-                d.y = 0;
-
-            m_owner->transform.aPosition( vec3(d.x,d.y,0) );
+            vec3 v = m_owner->transform.gPosition();
+            Rect r( tCld->rect );
+            r.Scale( tCld->m_owner->transform.gScale());
+            r.AddOffset( tCld->m_owner->transform.gPosition());
+            m_owner->transform.uPosition( vec3(v.x,r.yma + .001f + m_owner->transform.gScale().y,v.z) );//
+            //m_owner->transform.aPosition(d * .5f);
         }
     }
     else /// Don't have collider so just move

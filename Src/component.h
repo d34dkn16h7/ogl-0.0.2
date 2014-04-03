@@ -16,7 +16,7 @@ public:
     bool active;
     GameObject* m_owner;
 
-    Component(size_t type ,GameObject* owner) : typeHash(type) , m_owner(owner) , active(true) {}
+    Component(size_t type ,GameObject* owner) : typeHash(type) ,active(true) ,m_owner(owner)  {}
     virtual ~Component() {}
 
     virtual void Start() = 0;

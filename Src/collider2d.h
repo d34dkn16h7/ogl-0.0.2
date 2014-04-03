@@ -58,7 +58,6 @@ public:
     static vector<ColliderHit> Intersect( Collider2d* );
     static vector<ColliderHit> Intersect( Collider2d* , vec3);
 
-
     vector<ColliderHit> UpdateStatus();
 };
 

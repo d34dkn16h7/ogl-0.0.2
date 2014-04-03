@@ -32,10 +32,14 @@ public:
     /// Add
     void aPosition(const vec3& val)
         {mPosition += val;MakeMatrix();}
+    void aPosition(const vec2& val)
+        {aPosition(vec3(val.x,val.y,0));}
+
     void aRotation(const vec3& val)
         {mRotation += val;MakeMatrix();}
     void aScale(const vec3& val)
         {mScale += val;MakeMatrix();}
+
     /// Set
     void uPosition(const vec3& val)
         {mPosition = val;MakeMatrix();}
@@ -43,6 +47,7 @@ public:
         {mRotation = val;MakeMatrix();}
     void uScale(const vec3& val)
         {mScale = val;MakeMatrix();}
+
     /// Get
     vec3 gPosition() const
         {return mPosition;}

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1396487266 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
+1396540758 source:d:\projects\git\ogl-0.0.2\src\camera.cpp
 	"camera.h"
 
 1396472367 d:\projects\git\ogl-0.0.2\src\camera.h
@@ -8,7 +8,7 @@
 	<string>
 	"transform.h"
 
-1396470526 d:\projects\git\ogl-0.0.2\src\transform.h
+1396544065 d:\projects\git\ogl-0.0.2\src\transform.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/glm.hpp>
 
@@ -17,7 +17,7 @@
 	"collider2d.h"
 	"gameObject.h"
 
-1396471090 d:\projects\git\ogl-0.0.2\src\collider2d.h
+1396545335 d:\projects\git\ogl-0.0.2\src\collider2d.h
 	<glm/glm.hpp>
 	<vector>
 	"tools.h"
@@ -33,7 +33,7 @@
 	<vector>
 	<string>
 
-1396535097 d:\projects\git\ogl-0.0.2\src\component.h
+1396536282 d:\projects\git\ogl-0.0.2\src\component.h
 	<vector>
 	<typeinfo>
 
@@ -62,7 +62,7 @@
 	<vector>
 	<string>
 
-1396534875 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
+1396536255 source:d:\projects\git\ogl-0.0.2\src\editor.cpp
 	"input.h"
 	"camera.h"
 	"editor.h"
@@ -89,12 +89,12 @@
 	<glm/glm.hpp>
 	<vector>
 
-1395789222 d:\projects\git\ogl-0.0.2\src\physics.h
+1396543284 d:\projects\git\ogl-0.0.2\src\physics.h
 	<glm/glm.hpp>
 	<vector>
 	"component.h"
 
-1396487028 source:d:\projects\git\ogl-0.0.2\src\game.cpp
+1396536081 source:d:\projects\git\ogl-0.0.2\src\game.cpp
 	"game.h"
 	"input.h"
 	"editor.h"
@@ -105,7 +105,7 @@
 
 1396485247 d:\projects\git\ogl-0.0.2\src\game.h
 
-1395763932 d:\projects\git\ogl-0.0.2\src\renderer.h
+1396535884 d:\projects\git\ogl-0.0.2\src\renderer.h
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<SOIL/SOIL.h>
@@ -154,7 +154,7 @@
 	"gameObject.h"
 	"physics.h"
 
-1396535133 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
+1396537075 source:d:\projects\git\ogl-0.0.2\src\physics.cpp
 	<typeinfo>
 	"physics.h"
 	"collider2d.h"
@@ -165,7 +165,7 @@
 	"tools.h"
 	"program.h"
 
-1396453493 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
+1396535877 source:d:\projects\git\ogl-0.0.2\src\renderer.cpp
 	"game.h"
 	"tools.h"
 	"editor.h"
@@ -192,6 +192,15 @@
 1390857325 source:d:\projects\git\ogl-0.0.2\src\tools\token.cpp
 	"../tools.h"
 
-1396470444 source:d:\projects\git\ogl-0.0.2\src\transform.cpp
+1396536400 source:d:\projects\git\ogl-0.0.2\src\transform.cpp
 	"transform.h"
+
+1373956906 source:d:\projects\git\ogl-0.0.2\src\render.cpp
+	"render.h"
+
+1373957358 d:\projects\git\ogl-0.0.2\src\render.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	"geometry.h"
+	"component.h"
 

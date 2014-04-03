@@ -46,6 +46,7 @@ struct forceTimed : Force
 
 class Collider2d;
 class GameObject;
+
 class Physics : public Component
 {
 private:
@@ -67,6 +68,7 @@ public:
     void Start();
 
     void Jump(); /// Player Func move it later
+    void Move(vec2);
     void Move(vec3); /// Move by vec3 if not colliding
     void Push(vec3 totalForce, float speed = .1f );
     void AddConstantForce(vec3);
