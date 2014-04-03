@@ -60,6 +60,7 @@
 		<Unit filename="Src/camera.cpp" />
 		<Unit filename="Src/camera.h" />
 		<Unit filename="Src/collider2d.cpp" />
+		<Unit filename="Src/collider2d.h" />
 		<Unit filename="Src/component.h" />
 		<Unit filename="Src/editor.cpp" />
 		<Unit filename="Src/editor.h" />
@@ -76,6 +77,7 @@
 		<Unit filename="Src/physics.h" />
 		<Unit filename="Src/program.cpp" />
 		<Unit filename="Src/program.h" />
+		<Unit filename="Src/render.cpp" />
 		<Unit filename="Src/render.h" />
 		<Unit filename="Src/renderer.cpp" />
 		<Unit filename="Src/renderer.h" />

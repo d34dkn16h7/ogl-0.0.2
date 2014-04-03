@@ -7,7 +7,7 @@
 vector<Physics*> Physics::physics; /// List of registered objects
 
 Physics::Physics(GameObject* owner) :
-    Component(typeid(this).hash_code() , owner) , constForce( vec3(0,0,0) )
+    Component(typeid(this).hash_code() , owner) , constForce( vec3(0,0,0) ) , isGrounded(false)
 {
     m_owner->physics = this;
     collider = m_owner->AddComponent<Collider2d>();
@@ -47,7 +47,10 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
         vector<ColliderHit> cl = collider->Intersect(cPos);
 
         if(cl.size() == 0)
+        {
             m_owner->transform.uPosition(cPos);
+            isGrounded = false;
+        }
         else
         {
             Collider2d *tCld = cl[0].collider;
@@ -66,7 +69,8 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
             Rect r( tCld->rect );
             r.Scale( tCld->m_owner->transform.gScale());
             r.AddOffset( tCld->m_owner->transform.gPosition());
-            m_owner->transform.uPosition( vec3(v.x,r.yma + .001f + m_owner->transform.gScale().y,v.z) );//
+            m_owner->transform.uPosition( vec3(v.x,r.yma + .001f + m_owner->transform.gScale().y,v.z) );
+            isGrounded = true;
             //m_owner->transform.aPosition(d * .5f);
         }
     }
@@ -101,7 +105,7 @@ void Physics::Update() /// Update this object
                 forcePList.erase(forcePList.begin() + i);
         }
 
-        if(collider->ysd == ySideN::None && !isStatic && tForce == constForce)
+        if(!isGrounded && collider->ysd == ySideN::None && !isStatic && tForce == constForce)
             tForce = vec3(0,-.005f,0);
 
         /// Apply force!
