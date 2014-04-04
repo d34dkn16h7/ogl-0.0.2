@@ -37,7 +37,7 @@ void Physics::Move(vec2 val)
 {
     Move(vec3(val.x,val.y,0));
 }
-
+int tmpInt = 0;
 void Physics::Move(vec3 val) /// Move by val if not colliding
 {
     vec3 cPos = m_owner->transform.gPosition() + val;
@@ -53,25 +53,28 @@ void Physics::Move(vec3 val) /// Move by val if not colliding
         }
         else
         {
-            Collider2d *tCld = cl[0].collider;
-            vec2 d = cl[0].dist;
-            d.x = 0;
+            ColliderHit curCH = cl[0];
+
             for(ColliderHit c : cl)
             {
-                if(gPositive(c.dist.y) < gPositive(d.y))
+
+                if(tmpInt != c.collider->yside)
                 {
-                    tCld = c.collider;
-                    d.y = c.dist.y;
+                    cout << c.collider->yside << endl;
+                    tmpInt = c.collider->yside;
                 }
+
+                if(gPositive(c.dist.y) < gPositive(curCH.dist.y))
+                    curCH = c;
             }
 
+
             vec3 v = m_owner->transform.gPosition();
-            Rect r( tCld->rect );
-            r.Scale( tCld->m_owner->transform.gScale());
-            r.AddOffset( tCld->m_owner->transform.gPosition());
+            Rect r( curCH.collider->rect );
+            r.Scale( curCH.collider->m_owner->transform.gScale());
+            r.AddOffset( curCH.collider->m_owner->transform.gPosition());
             m_owner->transform.uPosition( vec3(v.x,r.yma + .001f + m_owner->transform.gScale().y,v.z) );
             isGrounded = true;
-            //m_owner->transform.aPosition(d * .5f);
         }
     }
     else /// Don't have collider so just move

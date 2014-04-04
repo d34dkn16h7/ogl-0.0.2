@@ -111,6 +111,8 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
         if(target == c) /// Stop colliding with yourself!
             continue;
 
+        target->xside = target->yside = SIDE_NONE;
+
         Rect cr( c->rect);
         cr.Scale(c->m_owner->transform.gScale());
         cr.AddOffset(c->m_owner->transform.gPosition());
@@ -120,9 +122,8 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
         bool top    = isIn(r.ymi,cr.ymi,cr.yma);
         bool bottom = isIn(r.yma,cr.ymi,cr.yma);
 
-
-        bool yBoth  = top && bottom;//r.yma >= cr.yma && r.ymi <= cr.ymi;
-        bool xBoth  = right && left;//r.xma >= cr.xma && r.xmi <= cr.xmi;
+        bool yBoth  = top && bottom;
+        bool xBoth  = right && left;
 
         if(top || bottom )
             if (right || left)
@@ -146,7 +147,6 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
                 val.push_back( ColliderHit(c,d) );
                 target->xside = xBoth ? SIDE_ALL : (right ? SIDE_RIGHT : SIDE_LEFT);
                 target->yside = yBoth ? SIDE_ALL : (top ? SIDE_TOP : SIDE_BOTTOM);
-                //target->ysd = top == bottom ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
             }
     }
 
