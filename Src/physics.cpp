@@ -105,7 +105,7 @@ void Physics::Update() /// Update this object
                 forcePList.erase(forcePList.begin() + i);
         }
 
-        if(!isGrounded && collider->ysd == ySideN::None && !isStatic && tForce == constForce)
+        if(!isGrounded && collider->yside == SIDE_NONE && !isStatic && tForce == constForce)
             tForce = vec3(0,-.005f,0);
 
         /// Apply force!

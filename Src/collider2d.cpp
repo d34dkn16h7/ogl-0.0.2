@@ -10,7 +10,7 @@ Collider2d::Collider2d(GameObject* own) :
     Collider2d(own , Rect(1,1) ) {}
 
 Collider2d::Collider2d(GameObject* own , Rect r) :
-    Component(typeid(this).hash_code() , own) , ysd(ySideN::None) , xsd(xSideN::None)
+    Component(typeid(this).hash_code() , own) , xside(SIDE_NONE) , yside(SIDE_NONE)
 {
     mRect = rect = r;
     colliders.push_back(this);
@@ -104,9 +104,7 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
     r.Scale(target->m_owner->transform.gScale());
     r.AddOffset(uPos);
 
-
-    target->xsd = xSideN::None;
-    target->ysd = ySideN::None;
+    target->xside = target->yside = SIDE_NONE;
 
     for(Collider2d* c : colliders)
     {
@@ -146,8 +144,8 @@ vector<ColliderHit> Collider2d::Intersect( Collider2d* target , vec3 uPos ) /// 
                     d.y = cr.ymi - r.yma;
 
                 val.push_back( ColliderHit(c,d) );
-                target->xsd = xBoth ? xSideN::Both : (right ? xSideN::Right : xSideN::Left);
-                target->ysd = yBoth ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
+                target->xside = xBoth ? SIDE_ALL : (right ? SIDE_RIGHT : SIDE_LEFT);
+                target->yside = yBoth ? SIDE_ALL : (top ? SIDE_TOP : SIDE_BOTTOM);
                 //target->ysd = top == bottom ? ySideN::Both : (top ? ySideN::Top : ySideN::Bottom);
             }
     }

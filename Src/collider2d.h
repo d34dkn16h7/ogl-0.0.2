@@ -6,26 +6,17 @@
 #include "tools.h"
 #include "component.h"
 
-namespace xSideN
-{
-    enum xSide
-    {
-        None,Both,Left,Right
-    };
-}
-namespace ySideN
-{
-    enum ySide
-    {
-        None,Both,Top,Bottom
-    };
-}
+#define SIDE_NONE 0
+#define SIDE_ALL 1
+
+#define SIDE_LEFT 2
+#define SIDE_RIGHT 3
+#define SIDE_TOP 4
+#define SIDE_BOTTOM 5
 
 using namespace std;
 using namespace glm;
 using namespace Tools;
-using namespace ySideN;
-using namespace xSideN;
 
 struct ColliderHit;
 class GameObject;
@@ -36,8 +27,7 @@ private:
 
     Rect mRect;
 public:
-    xSide xsd;
-    ySide ysd;
+    unsigned int xside,yside;
 
     Rect rect;
 
