@@ -11,14 +11,17 @@ void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
     {
         if(Tools::Settings::TextureLoadModern)
         {
-            tex = SOIL_load_OGL_texture(imgPath.c_str(),SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
+#ifdef DBG_TEXTURE_LOAD
+            cout << "Load -> " << imgPath;
+#endif // DBG_TEXTURE_LOAD
+            tex = SOIL_load_OGL_texture( imgPath.c_str() ,SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
             if (tex == 0)
                 cout << "SOIL loading error for -> " << imgPath << " :" <<  SOIL_last_result() << endl;
 
             _m[name] = (*this);
 
 #ifdef DBG_TEXTURE_LOAD
-            cout << "Loaded " << imgPath << endl;
+            cout << " - Done." << endl;
 #endif // DBG_TEXTURE_LOAD
         }
         else

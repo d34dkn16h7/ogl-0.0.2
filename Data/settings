@@ -1,5 +1,5 @@
-﻿#textureMode true
-#textureModern true
+﻿#textureMode false
+#textureModern false
 #isModernGL true -non-modernFails
 
 vertex Data/Shaders/dVS.glsl

@@ -1,7 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-//#define DBG_TEXTURE_LOAD
+#define DBG_TEXTURE_LOAD
 
 #include <unordered_map>
 #include <SOIL/SOIL.h>
