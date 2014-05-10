@@ -1,6 +1,8 @@
 #include "tools.h"
 #include "texture.h"
 
+//#define DBG_TEXTURE_LOAD
+
 unordered_map<string,Texture> Texture::_m;
 
 void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
@@ -9,20 +11,16 @@ void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
     m_path = imgPath;
     if(_m.count(name) == 0)
     {
-        if(Tools::Settings::TextureLoadModern)
-        {
 #ifdef DBG_TEXTURE_LOAD
             cout << "Load -> " << imgPath;
 #endif // DBG_TEXTURE_LOAD
+        if(Tools::Settings::TextureLoadModern)
+        {
             tex = SOIL_load_OGL_texture( imgPath.c_str() ,SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
             if (tex == 0)
                 cout << "SOIL loading error for -> " << imgPath << " :" <<  SOIL_last_result() << endl;
 
             _m[name] = (*this);
-
-#ifdef DBG_TEXTURE_LOAD
-            cout << " - Done." << endl;
-#endif // DBG_TEXTURE_LOAD
         }
         else
         {
@@ -45,6 +43,10 @@ void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
 
             _m[name] = (*this);
         }
+
+#ifdef DBG_TEXTURE_LOAD
+            cout << "Load -> " << imgPath;
+#endif // DBG_TEXTURE_LOAD
     }
     else
         (*this) = _m[name];

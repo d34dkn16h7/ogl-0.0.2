@@ -1,8 +1,6 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-//#define DBG_GAMEOBJECT_FIND
-
 #include <stdexcept>
 #include <typeinfo>
 #include "tools.h"

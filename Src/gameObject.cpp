@@ -6,6 +6,8 @@
 #include "game.h"
 #include <iostream>
 
+//#define DBG_GAMEOBJECT_FIND
+
 const static string DataDir = "Data/";
 vector<GameObject*> GameObject::gameObjects;
 
@@ -27,7 +29,7 @@ GameObject::~GameObject()
 GameObject* GameObject::Find(string name)
 {
 #ifdef DBG_GAMEOBJECT_FIND
-    cout << "Find : " << name << endl;
+    cout << "toFind : " << name << endl;
 #endif // DBG_GAMEOBJECT_FIND
     for(unsigned int i = 0 ; i < gameObjects.size(); i++)
     {
