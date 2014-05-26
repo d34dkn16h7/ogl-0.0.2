@@ -34,10 +34,10 @@ public:
 
     static GameObject* Find(string);
 
-    void Reg();
+    void Reg(); /// Reg (this)
     static void Reg(GameObject*);
 
-    void UnReg();
+    void UnReg(); /// UnReg (this)
     static void UnReg(GameObject*);
 };
 

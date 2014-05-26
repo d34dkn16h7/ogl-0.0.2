@@ -53,7 +53,7 @@ void Game::Update() /// Update all
 
     player_Input();
 }
-
+GameObject* mgmo = nullptr;
 float Speed  = 15;
 void Game::player_Input() /// Player input - remove it later
 {
@@ -61,10 +61,12 @@ void Game::player_Input() /// Player input - remove it later
     {
         if(p_onControl == nullptr)
         {
+            onControl->transform.uPosition(Camera::MainCamera->transform.gPosition() - vec3(0,0,.1f));
+            /*
             if(onControl->HasComponent<Physics>())
                 p_onControl = onControl->GetComponent<Physics>();
             else
-                p_onControl = onControl->AddComponent<Physics>();
+                p_onControl = onControl->AddComponent<Physics>();*/
         }
 
         if(p_onControl != nullptr)
