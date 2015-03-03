@@ -61,7 +61,7 @@ void Game::player_Input() /// Player input - remove it later
     {
         if(p_onControl == nullptr)
         {
-            onControl->transform.uPosition(Camera::MainCamera->transform.gPosition() - vec3(0,0,.1f));
+            //onControl->transform.uPosition(Camera::MainCamera->transform.gPosition() - vec3(0,0,.1f));
             /*
             if(onControl->HasComponent<Physics>())
                 p_onControl = onControl->GetComponent<Physics>();

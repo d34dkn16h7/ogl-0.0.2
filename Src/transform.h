@@ -33,7 +33,7 @@ public:
     void aPosition(const vec3& val)
         {mPosition += val;MakeMatrix();}
     void aPosition(const vec2& val)
-        {aPosition(vec3(val.x,val.y,0));}
+        {aPosition(vec3(val.x,val.y,0));MakeMatrix();}
 
     void aRotation(const vec3& val)
         {mRotation += val;MakeMatrix();}
