@@ -15,14 +15,18 @@ private:
 
     vec3 mPosition = vec3(0,0,0);
     vec3 mRotation = vec3(0,0,0);
-    vec3 mScale = vec3(1,1,1);
+    vec3 mScale    = vec3(1,1,1);
 
     mat4 mMatrix;
     void MakeMatrix();
 public:
-    vec3 forward = vec3(0,0,1),backward = -forward;
-    vec3 left = vec3(-1,0,0),right = -left;
-    vec3 up = vec3(0,1,0),down = -up;
+    const vec3
+        forward  = vec3(0,0,1),
+        right    = vec3(1,0,0),
+        up       = vec3(0,1,0),
+        backward = -forward,
+        left     = -right,
+        down     = -up;
 
     Transform()
         {MakeMatrix();}
@@ -30,33 +34,20 @@ public:
         {MakeMatrix();}
 
     /// Add
-    void aPosition(const vec3& val)
-        {mPosition += val;MakeMatrix();}
-    void aPosition(const vec2& val)
-        {aPosition(vec3(val.x,val.y,0));MakeMatrix();}
-
-    void aRotation(const vec3& val)
-        {mRotation += val;MakeMatrix();}
-    void aScale(const vec3& val)
-        {mScale += val;MakeMatrix();}
+    void aScale(const vec3&);
+    void aPosition(const vec3&);
+    void aRotation(const vec3&);
 
     /// Set
-    void uPosition(const vec3& val)
-        {mPosition = val;MakeMatrix();}
-    void uRotation(const vec3& val)
-        {mRotation = val;MakeMatrix();}
-    void uScale(const vec3& val)
-        {mScale = val;MakeMatrix();}
+    void uScale(const vec3&);
+    void uPosition(const vec3&);
+    void uRotation(const vec3&);
 
     /// Get
-    vec3 gPosition() const
-        {return mPosition;}
-    vec3 gRotation() const
-        {return mRotation;}
-    vec3 gScale() const
-        {return mScale;}
-    mat4 gMatrix() const
-        {return mMatrix;}
+    mat4 gMatrix() const;
+    vec3 gScale() const;
+    vec3 gPosition() const;
+    vec3 gRotation() const;
 };
 
 class Transformable

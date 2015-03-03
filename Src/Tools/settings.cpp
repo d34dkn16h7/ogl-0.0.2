@@ -48,10 +48,9 @@ void Settings::LoadFiles()
     {
         if( setting == "#texture" )
         {
-            Texture t;
             string path = setting.Next();
             string name = setting.Next();
-            t.LoadTexture(path,name);
+            Texture::LoadTexture(path,name);
         }
     }
 }

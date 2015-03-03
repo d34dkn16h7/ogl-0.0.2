@@ -204,7 +204,7 @@
 	"geometry.h"
 	"component.h"
 
-1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\camera.cpp
+1425396246 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\camera.cpp
 	"camera.h"
 
 1425390559 c:\users\stanislav\documents\github\ogl-0.0.2\src\camera.h
@@ -213,7 +213,7 @@
 	<string>
 	"transform.h"
 
-1425395689 c:\users\stanislav\documents\github\ogl-0.0.2\src\transform.h
+1425407552 c:\users\stanislav\documents\github\ogl-0.0.2\src\transform.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/glm.hpp>
 
@@ -228,7 +228,7 @@
 	"tools.h"
 	"component.h"
 
-1425390559 c:\users\stanislav\documents\github\ogl-0.0.2\src\tools.h
+1425408107 c:\users\stanislav\documents\github\ogl-0.0.2\src\tools.h
 	<glm/glm.hpp>
 	<iostream>
 	<stdlib.h>
@@ -250,7 +250,7 @@
 	"component.h"
 	"transform.h"
 
-1425390559 c:\users\stanislav\documents\github\ogl-0.0.2\src\geometry.h
+1425408639 c:\users\stanislav\documents\github\ogl-0.0.2\src\geometry.h
 	<glm/gtc/matrix_transform.hpp>
 	<glm/glm.hpp>
 	<SOIL/SOIL.h>
@@ -260,14 +260,14 @@
 	<string>
 	"texture.h"
 
-1425390559 c:\users\stanislav\documents\github\ogl-0.0.2\src\texture.h
+1425409596 c:\users\stanislav\documents\github\ogl-0.0.2\src\texture.h
 	<unordered_map>
 	<SOIL/SOIL.h>
 	<GL/glew.h>
 	<vector>
 	<string>
 
-1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\editor.cpp
+1425407231 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\editor.cpp
 	"input.h"
 	"camera.h"
 	"editor.h"
@@ -354,7 +354,7 @@
 	"geometry.h"
 	"component.h"
 
-1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\renderer.cpp
+1425409128 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\renderer.cpp
 	"game.h"
 	"tools.h"
 	"editor.h"
@@ -364,14 +364,14 @@
 	"renderer.h"
 	"gameObject.h"
 
-1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\texture.cpp
+1425409466 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\texture.cpp
 	"tools.h"
 	"texture.h"
 
 1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\file.cpp
 	"../tools.h"
 
-1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\settings.cpp
+1425409578 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\settings.cpp
 	"../tools.h"
 	"../texture.h"
 
@@ -381,10 +381,10 @@
 1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\token.cpp
 	"../tools.h"
 
-1425395668 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\transform.cpp
+1425407647 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\transform.cpp
 	"transform.h"
 
-1425394750 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\gameobject.cpp
+1425409085 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\gameobject.cpp
 	"gameObject.h"
 	"renderer.h"
 	"collider2d.h"

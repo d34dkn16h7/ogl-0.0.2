@@ -12,11 +12,9 @@ vector<GameObject*> Editor::selection;
 
 void Editor::Update()
 {
-    Transform* t = &Camera::MainCamera->transform;
     isMultyEdit = Input::isKey(GLFW_KEY_LEFT_CONTROL);
 
-    if(Input::isMouse(0))
-        MoveCam();
+    MoveCam();
 
     if(Input::isKeyPressed(GLFW_KEY_E))
         UpdateSelection( GameObject::Find("player") );
@@ -30,12 +28,6 @@ void Editor::Update()
         mode = EditMode::RotationEdit;   /// Empty
     if(Input::isKeyPressed(GLFW_KEY_4) )
         mode = EditMode::ColorEdit;   /// Empty
-
-    if(Camera::MainCamera->GetCameraType() == CameraType::Perspective && Input::mouseWDelta.y != 0) // No cam z move -> later y instead of z
-    {
-        vec3 lTarget = Camera::MainCamera->gLookTarget();
-        t->aPosition( (lTarget.z < 0 ? t->forward : t->backward) * (Input::mouseWDelta.y * -.4f) );
-    }
 }
 
 void Editor::Edit()
@@ -166,8 +158,20 @@ void Editor::MoveCam()
 {
     Camera* c = Camera::MainCamera;
     Transform* t = &c->transform;
-    float orthoSpeed = 1,perspSpeed = .001f * t->gPosition().z;
+
+    if(c->GetCameraType() == CameraType::Perspective && Input::mouseWDelta.y != 0) // No cam z move -> later y instead of z
+    {
+        float zSp = 1.3f;
+        vec3 lTarget = c->gLookTarget();
+        t->aPosition( (lTarget.z < 0 ? t->forward * zSp : t->backward * zSp) * (Input::mouseWDelta.y * -.4f) );
+    }
+
+    if(!Input::isMouse(0)) return;
+
+    float orthoSpeed = 1,perspSpeed = .01f * t->gPosition().z;
+
     float speed = c->GetCameraType() == CameraType::Orthographic ? orthoSpeed : perspSpeed ;
+
     vec2 val = Input::mouseDelta;
 
     t->aPosition((t->left * val.x * speed) + (t->up * val.y * speed));

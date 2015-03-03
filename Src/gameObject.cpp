@@ -91,7 +91,7 @@ void GameObject::LoadFromFile(string fSrc)
             else if(mapToken == "pos" ) gmo->transform.uPosition( mapToken.GetNVec3() );
             else if(mapToken == "rot" ) gmo->transform.uRotation( mapToken.GetNVec3() );
             else if(mapToken == "scl" ) gmo->transform.uScale( mapToken.GetNVec3() );
-            else if(mapToken == "texture" ) gmo->m_tex.SetTexture( mapToken.Next() );
+            else if(mapToken == "texture" ) gmo->m_tex = Texture::GetTexture( mapToken.Next() );
             else if(mapToken == "staticObject") gmo->physics->isStatic = true;//gmo->DestroyComponents();
         }
     }
@@ -127,7 +127,7 @@ void GameObject::LoadPrefab(string prefPath) /// Load and make prefab by nameTok
 
         if(token == "texture" && Settings::loadTextures)
             if(token.Peek(1) != "null")
-                m_tex.SetTexture( token.Next() );
+                m_tex = Texture::GetTexture( token.Next() );
 
         if(token == "physics") /// Also adds Collider2d
             AddComponent<Physics>();

@@ -36,16 +36,16 @@ void Renderer::RenderObjects() /// Render all objects
             type = gmo->gPtr->gType();
             lastDrawName = gmo->gPtr->info.modelId;
         }
-        if(lastTexture != gmo->m_tex.m_name)
+        if(lastTexture != gmo->m_tex->m_name)
         {
             glActiveTexture (GL_TEXTURE0);
 
-            if(gmo->m_tex.tex != 0)
-                glBindTexture (GL_TEXTURE_2D, gmo->m_tex.tex );
+            if(gmo->m_tex->tex != 0)
+                glBindTexture (GL_TEXTURE_2D, gmo->m_tex->tex );
             else
                 glBindTexture (GL_TEXTURE_2D, 0);
 
-            lastTexture = gmo->m_tex.m_name;
+            lastTexture = gmo->m_tex->m_name;
         }
         glDrawArrays(type,0,edgesCount);
         glBindVertexArray( 0 );

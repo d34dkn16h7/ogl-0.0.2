@@ -1,10 +1,10 @@
-﻿#textureMode false
+﻿#textureMode true
 #textureModern false
 #isModernGL true -non-modernFails
 
 vertex Data/Shaders/dVS.glsl
--fragment Data/Shaders/fsText3.30.glsl
 fragment Data/Shaders/dFSTextured.glsl
+-fragment Data/Shaders/fsText3.30.glsl
 
 map Data/_map.mp
 

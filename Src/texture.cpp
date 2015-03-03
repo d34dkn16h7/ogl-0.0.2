@@ -1,26 +1,20 @@
 #include "tools.h"
 #include "texture.h"
 
-//#define DBG_TEXTURE_LOAD
-
-unordered_map<string,Texture> Texture::_m;
+unordered_map<string,Texture*> Texture::_m;
 
 void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
 {
-    m_name = name;
-    m_path = imgPath;
     if(_m.count(name) == 0)
     {
-#ifdef DBG_TEXTURE_LOAD
-            cout << "Load -> " << imgPath;
-#endif // DBG_TEXTURE_LOAD
+        GLuint tex = 0;
         if(Tools::Settings::TextureLoadModern)
         {
             tex = SOIL_load_OGL_texture( imgPath.c_str() ,SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
-            if (tex == 0)
-                cout << "SOIL loading error for -> " << imgPath << " :" <<  SOIL_last_result() << endl;
-
-            _m[name] = (*this);
+            if (tex != 0)
+                _m[name] = new Texture(name,tex);
+            else
+                Tools::Logger::Error("SOIL Loading -> " + imgPath + " : " + SOIL_last_result());
         }
         else
         {
@@ -41,19 +35,13 @@ void Texture::LoadTexture(string imgPath,string name) /// Laod and link texture
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,GL_UNSIGNED_BYTE, image);
             SOIL_free_image_data(image);
 
-            _m[name] = (*this);
+            _m[name] = new Texture(name,tex);
         }
-
-#ifdef DBG_TEXTURE_LOAD
-            cout << "Load -> " << imgPath;
-#endif // DBG_TEXTURE_LOAD
     }
-    else
-        (*this) = _m[name];
 }
 
-void Texture::SetTexture( string name )
+Texture* Texture::GetTexture( string name )
 {
-    if(_m.count(name) != 0)
-        (*this) = _m[name];
+    if(_m.count(name) != 0) return _m[name];
+    else return nullptr;
 }

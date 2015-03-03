@@ -129,6 +129,24 @@ namespace Tools
         StoredToken( const string& fName, string key) : Token(fName,key) {}
     };
 
+    class Logger
+    {
+    private:
+        static void Log(const string str)
+        {
+            cout << str << endl;
+        }
+    public:
+        static void Error(const string str)
+        {
+            Log("Error -> " + str);
+        }
+        static void Warning(const string str)
+        {
+            Log("Warning -> " + str);
+        }
+    };
+
     class Settings
     {
     public:

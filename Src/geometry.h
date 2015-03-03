@@ -70,7 +70,7 @@ private:
     void UniteData();
     void LinkData();
 public:
-    Texture m_tex;
+    Texture* m_tex;
     string fileToken;
     string nameToken;
     GData* gPtr = nullptr;

@@ -12,13 +12,17 @@ using namespace std;
 class Texture
 {
 private:
-    static unordered_map<string,Texture> _m;
+    static unordered_map<string,Texture*> _m;
 public:
-    GLuint tex = 0;
-    string m_path,m_name;
+    string
+        m_name;
 
-    void LoadTexture( string,string );
-    void SetTexture( string );
+    GLuint tex = 0;
+
+    Texture(string _n,GLuint _tex) : m_name(_n) , tex(_tex) {}
+
+    static Texture* GetTexture( string );
+    static void LoadTexture( string,string );
 };
 
 #endif // TEXTURE_H
