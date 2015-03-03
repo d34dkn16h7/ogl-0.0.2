@@ -37,7 +37,7 @@ void Physics::Move(vec2 val)
 {
     Move(vec3(val.x,val.y,0));
 }
-int tmpInt = 0;
+unsigned int tmpInt = 0;
 void Physics::Move(vec3 val) /// Move by val if not colliding
 {
     vec3 cPos = m_owner->transform.gPosition() + val;

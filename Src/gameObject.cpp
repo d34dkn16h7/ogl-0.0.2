@@ -6,10 +6,12 @@
 #include "game.h"
 #include <iostream>
 
-//#define DBG_GAMEOBJECT_FIND
+#define DBG
 
 const static string DataDir = "Data/";
 vector<GameObject*> GameObject::gameObjects;
+
+void Log_DBG(string);
 
 GameObject::GameObject(string name) : Components(this) , active(true)
 {
@@ -40,10 +42,16 @@ GameObject* GameObject::Find(string name)
             return gameObjects[i];
     }
 
-#ifdef DBG_GAMEOBJECT_FIND
-    cout << "No '" << name << "' found." << endl;
-#endif // DBG_GAMEOBJECT_FIND
+    Log_DBG("No '" + name + "' found.");
+
     return nullptr;
+}
+
+void Log_DBG(string str)
+{
+#ifdef DBG
+    cout << str << endl;
+#endif
 }
 
 void GameObject::Reg()
