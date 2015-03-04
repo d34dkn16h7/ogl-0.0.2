@@ -1,7 +1,7 @@
 cube
 	pos 0 0 0
 	rot 0 0 0
-	scl 0.3 0.3 0.05
+	scl 1 1 1
 	onControl
 	texture head
 cube

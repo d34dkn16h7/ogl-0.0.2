@@ -5,7 +5,6 @@ using namespace Tools;
 
 //Token* Settings::setting;
 bool Settings::loadTextures;
-bool Settings::isModernGL;
 bool Settings::TextureLoadModern = false;
 string Settings::mapFile;
 string Settings::vertexShaderFileName;
@@ -18,9 +17,6 @@ void Settings::LoadSettings()
 
     while(setting.Next() != "#endToken")
     {
-        if( setting == "#isModernGL" )
-            isModernGL = setting.Next() == "true" ? true : false;
-
         if( setting == "#textureMode" )
             loadTextures = setting.Next() == "true" ? true : false;
 

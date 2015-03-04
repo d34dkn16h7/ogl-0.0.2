@@ -1,18 +1,19 @@
 #include "tools.h"
 #include "program.h"
 
-GLuint* Program::dProg = nullptr; /// Default Program aka First Loaded
-vector<Program*> Program::programs; /// Program vector
+GLuint* Program::dProg = nullptr; /// Default program,first loaded
+vector<Program*> Program::programs;
 
-Program::Program(string vShaderSrc ,string fShaderSrc ,string progName) /// Construct Shaders
+Program::Program(string vShaderSrc ,string fShaderSrc ,string progName)
 {
     name = progName;
     isReady = CompileShader(vert,GL_VERTEX_SHADER,vShaderSrc) &&
               CompileShader(frag,GL_FRAGMENT_SHADER,fShaderSrc);
+
     if(isReady)
     {
         LinkProgram();
-        if(dProg != nullptr)
+        if(dProg == nullptr)
             dProg = &prog;
         programs.push_back(this);
     }
@@ -20,7 +21,7 @@ Program::Program(string vShaderSrc ,string fShaderSrc ,string progName) /// Cons
         throw runtime_error("Shader Compile Error");
 }
 
-GLuint Program::CompileShader(GLuint& trg,GLuint type,string shaderSrc) /// Compile Shader
+GLuint Program::CompileShader(GLuint& trg,GLuint type,string shaderSrc)
 {
     trg = glCreateShader(type);
     string source =  Tools::File::LoadFile(shaderSrc);
@@ -32,16 +33,16 @@ GLuint Program::CompileShader(GLuint& trg,GLuint type,string shaderSrc) /// Comp
     return status;
 }
 
-void Program::LinkProgram() /// Link Program
+void Program::LinkProgram()
 {
     prog = glCreateProgram();
     glAttachShader( prog, vert);
     glAttachShader( prog, frag);
-    glBindFragDataLocation( prog, 0, "outColor" ); // Hard-coded? Why?
+    glBindFragDataLocation( prog, 0, "outColor" ); // Hard-coded? :(
     glLinkProgram(prog);
 }
 
-void Program::SetUniform(const string& name,const vec2& val) /// Set Uniform for vector42
+void Program::SetUniform(const string& name,const vec2& val)
 {
     Use(true);
     const GLchar* attName = name.c_str();
@@ -56,7 +57,7 @@ void Program::SetUniform(const string& name,const vec2& val) /// Set Uniform for
     Use(false);
 }
 
-void Program::SetUniform(const string& name,const vec3& val) /// Set Uniform for vector43
+void Program::SetUniform(const string& name,const vec3& val)
 {
     Use(true);
     const GLchar* attName = name.c_str();
@@ -70,7 +71,7 @@ void Program::SetUniform(const string& name,const vec3& val) /// Set Uniform for
     Use(false);
 }
 
-void Program::SetUniform(const string& name,const vec4& val) /// Set Uniform for vector4
+void Program::SetUniform(const string& name,const vec4& val)
 {
     Use(true);
     const GLchar* attName = name.c_str();
@@ -84,7 +85,7 @@ void Program::SetUniform(const string& name,const vec4& val) /// Set Uniform for
     Use(false);
 }
 
-void Program::SetUniform(const string& name,const mat4& matrix) /// Set Uniform for Matrix4
+void Program::SetUniform(const string& name,const mat4& matrix)
 {
     Use(true);
     const GLchar* attName = name.c_str();
@@ -111,21 +112,17 @@ void Program::Use(bool val) /// Member-Func Use
         glUseProgram(0);
 }
 
-void Program::Use(bool val , string progName) /// Static-Func Use progName
+void Program::Use(string progName) /// Static-Func Use progName
 {
-    Program* p = GetProgramIns(progName);
-    if(val && p != nullptr)
-        glUseProgram(p->prog);
-    else
-        glUseProgram(0);
+    glUseProgram(GetProgram(progName));
 }
 
-GLuint& Program::GetProgram() /// Member-Func Get Program
+GLuint& Program::GetProgram()
 {
     return prog;
 }
 
-GLuint& Program::GetProgram(string progName) /// Static-Func Get Program
+GLuint& Program::GetProgram(string progName)
 {
     for(Program* p : programs)
         if(p->name == progName)
@@ -134,7 +131,7 @@ GLuint& Program::GetProgram(string progName) /// Static-Func Get Program
     return (*dProg);
 }
 
-Program* Program::GetProgramIns(string progName) /// Static-Func Get Program Instance
+Program* Program::GetProgramIns(string progName)
 {
     for(Program* p : programs)
         if(p->name == progName)

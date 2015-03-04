@@ -19,8 +19,12 @@ private:
     static vector<Program*> programs;
 
     bool isReady;
-    GLuint prog,vert,frag;
+
     static GLuint* dProg;
+    GLuint
+        prog,
+        vert,
+        frag;
     GLuint CompileShader(GLuint& trg,GLuint type,string shaderSrc);
     void LinkProgram();
 public:
@@ -28,6 +32,8 @@ public:
 
     Program(string,string,string);
     void Use(bool);
+
+    GLuint gAttrib(string);
     GLuint& GetProgram();
 
     void SetUniform(const string&,const vec2&);
@@ -35,9 +41,7 @@ public:
     void SetUniform(const string&,const vec4&);
     void SetUniform(const string&,const mat4&);
 
-    GLuint gAttrib(string);
-
-    static void Use(bool,string);
+    static void Use(string);
     static GLuint& GetProgram(string);
     static Program* GetProgramIns(string);
 };

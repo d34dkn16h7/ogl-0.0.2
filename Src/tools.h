@@ -152,7 +152,6 @@ namespace Tools
     public:
         static vector<ObjectInfo> objectInfos;
 
-        static bool isModernGL;
         static bool loadTextures;
         static bool TextureLoadModern;
         static string mapFile;

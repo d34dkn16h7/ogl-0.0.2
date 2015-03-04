@@ -30,6 +30,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++1y" />
 			<Add option="-DGLEW_STATIC" />
 			<Add option="-DGLFW_INCLUDE_GLU" />
 		</Compiler>
@@ -41,7 +42,6 @@
 			<Add library="gdi32" />
 			<Add library="glu32" />
 		</Linker>
-		<Unit filename="Data/Shaders/dFS.glsl" />
 		<Unit filename="Data/Shaders/dFSTextured.glsl" />
 		<Unit filename="Data/Shaders/dVS.glsl" />
 		<Unit filename="Data/Shaders/fsText3.30.glsl" />

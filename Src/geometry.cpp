@@ -40,8 +40,8 @@ void Geometry::Load(string fSrc,string name) /// Load .obj model
         if(geoToken.tokens.size() > 2)
         {
             gData.push_back(gPtr);
-            if(Tools::Settings::isModernGL)
-                LinkData();
+
+            LinkData();
         }
         else
             cout << "Empty or corrupted model file : " << name <<  endl;

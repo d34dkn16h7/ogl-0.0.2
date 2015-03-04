@@ -7,7 +7,7 @@
 #include "renderer.h"
 #include "gameObject.h"
 
-const string windowName = "oGL 3.2 -0.0.2";
+const string windowName = "openGL 3.2 - 0.0.2";
 
 GLFWwindow* Renderer::window;
 Camera* Renderer::cam;
@@ -61,10 +61,7 @@ void Renderer::RenderAll() /// Call all render functions
     glClearColor(0,0,0,1); // (1,1,1,1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if(Tools::Settings::isModernGL)
-        RenderObjects();
-    else
-        DrawLegacy();
+    RenderObjects();
 
     glfwSwapBuffers( window );
 }
@@ -74,12 +71,9 @@ bool Renderer::Setup(int w,int h) /// Setup GLFW - GLEW + Window + Shaders
     glfwInit();
     glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
 
-    if(Tools::Settings::isModernGL)
-    {
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    }
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     window = glfwCreateWindow(w, h, windowName.c_str(), 0, 0);
     if(!window)
@@ -105,8 +99,7 @@ bool Renderer::Setup(int w,int h) /// Setup GLFW - GLEW + Window + Shaders
     glDepthFunc(GL_LESS);
 
     cam = new Camera(w,h);
-    if(Tools::Settings::isModernGL)
-        prog = new Program(Tools::Settings::vertexShaderFileName,Tools::Settings::fragmentShaderFileName,"Model");
+    prog = new Program(Tools::Settings::vertexShaderFileName,Tools::Settings::fragmentShaderFileName,"Model");
 
 #ifdef DBG_RENDERER_INFO
     PrintRendererInfo();
@@ -140,28 +133,4 @@ void Renderer::UnRegObject(GameObject *obj) /// Remove gameObject from draw
 GLFWwindow* Renderer::gWindow() /// Return GLFWwindow* handler
 {
     return window;
-}
-
-void Renderer::DrawLegacy() /// NOT WORKING
-{
-    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
-    for(GameObject* gmo : drawObjects)
-    {
-        glLoadIdentity();
-        //glTranslatef(0,0,0);
-        vec3 pos = gmo->transform.gPosition();
-        glTranslatef(pos.x,pos.y,pos.z);
-        pos = Camera::MainCamera->transform.gPosition();
-        glTranslatef(pos.x,pos.y,pos.z);
-
-        glBegin(GL_TRIANGLE_STRIP);
-
-        for(unsigned int i = 0;i < gmo->gPtr->verticles.size();i += 3)
-        {
-            glColor3f( gmo->gPtr->verticles[i],gmo->gPtr->verticles[i + 1],gmo->gPtr->verticles[i + 2]);
-            glVertex3f( gmo->gPtr->verticles[i],gmo->gPtr->verticles[i + 1],gmo->gPtr->verticles[i + 2]);
-        }
-
-        glEnd();
-    }
 }
