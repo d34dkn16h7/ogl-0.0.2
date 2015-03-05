@@ -66,7 +66,7 @@ void Renderer::RenderAll() /// Call all render functions
     glfwSwapBuffers( window );
 }
 
-bool Renderer::Setup(int w,int h) /// Setup GLFW - GLEW + Window + Shaders
+void Renderer::Setup(int w,int h) /// Setup GLFW - GLEW + Window + Shaders , throws on fail
 {
     glfwInit();
     glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
@@ -78,44 +78,41 @@ bool Renderer::Setup(int w,int h) /// Setup GLFW - GLEW + Window + Shaders
     window = glfwCreateWindow(w, h, windowName.c_str(), 0, 0);
     if(!window)
     {
+        Tools::Logger::Error("GLFW -> CreateWindow() Fail 1");
+
         glfwWindowHint(GLFW_OPENGL_PROFILE,0);
         window = glfwCreateWindow(w, h, windowName.c_str(), 0, 0);
         if(!window)
-        {
-            cout << "glfwCreateWindow() Fail" << endl;
-            return false;
-        }
-        cout << "GLFW_OPENGL_PROFILE -> 0" << endl;
+            Tools::Logger::FatalError("GLFW -> CreateWindow() Fail 2");
     }
     glfwMakeContextCurrent(window);
     glewExperimental = GL_TRUE;
     GLenum glewStatus = glewInit();
+
     if (glewStatus != GLEW_OK)
-    {
-        cout << "GLEW Error : " << glewGetErrorString(glewStatus) << endl;
-        return false;
-    }
+        Tools::Logger::FatalError("GLEW -> " + string((char*)glewGetErrorString(glewStatus)));
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
     cam = new Camera(w,h);
     prog = new Program(Tools::Settings::vertexShaderFileName,Tools::Settings::fragmentShaderFileName,"Model");
 
-#ifdef DBG_RENDERER_INFO
-    PrintRendererInfo();
-#endif // DBG_RENDERER_INFO
-
-    return true;
+    printRendererInfo();
 }
 
-void Renderer::PrintRendererInfo() /// Print main info
+void Renderer::printRendererInfo() /// Print main info
 {
     int iOpenGLMajor = glfwGetWindowAttrib(window, GLFW_CONTEXT_VERSION_MAJOR);
     int iOpenGLMinor = glfwGetWindowAttrib(window, GLFW_CONTEXT_VERSION_MINOR);
     int iOpenGLRevision = glfwGetWindowAttrib(window, GLFW_CONTEXT_REVISION);
-    cout << "Status: GLFW Version " << glfwGetVersionString() << endl;
-    cout << "Status: OpenGL Version: " << iOpenGLMajor << '.' << iOpenGLMinor << " Revision " << iOpenGLRevision << endl;
-    cout << "Status: GLEW Version " << glewGetString(GLEW_VERSION) << endl;
+    stringstream strs;
+    strs << "Renderer Info" << endl;
+    strs << "\t" << "Status: GLFW Version " << glfwGetVersionString() << endl;
+    strs << "\t" << "Status: OpenGL Version: " << iOpenGLMajor << '.' << iOpenGLMinor << " Revision " << iOpenGLRevision << endl;
+    strs << "\t" << "Status: GLEW Version " << glewGetString(GLEW_VERSION) << endl;
+
+    Tools::Logger::Info(strs.str());
 }
 
 void Renderer::RegObject(GameObject *obj) /// Register gameObject to draw
@@ -125,7 +122,7 @@ void Renderer::RegObject(GameObject *obj) /// Register gameObject to draw
 
 void Renderer::UnRegObject(GameObject *obj) /// Remove gameObject from draw
 {
-    for(unsigned int i = 0;i < drawObjects.size();i++)
+    for(unsigned int i = 0;i < drawObjects.size(); i++)
         if(drawObjects[i] == obj)
             drawObjects.erase(drawObjects.begin() + i);
 }

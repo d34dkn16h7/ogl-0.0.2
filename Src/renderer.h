@@ -26,8 +26,8 @@ private:
     static Program *prog;
     static vector<GameObject*> drawObjects;
 public:
-    static bool Setup(int,int);
-    static void PrintRendererInfo();
+    static void Setup(int,int); /// throws on fail
+    static void printRendererInfo();
 
     static void RenderAll();
     static void RenderObjects();

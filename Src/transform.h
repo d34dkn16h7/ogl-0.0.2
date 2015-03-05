@@ -48,6 +48,8 @@ public:
     vec3 gScale() const;
     vec3 gPosition() const;
     vec3 gRotation() const;
+
+    void Log();
 };
 
 class Transformable

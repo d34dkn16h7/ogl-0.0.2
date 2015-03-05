@@ -1,4 +1,5 @@
 #include "transform.h"
+#include "tools.h"
 
 void Transform::MakeMatrix()
 {
@@ -59,4 +60,16 @@ vec3 Transform::gPosition() const
 vec3 Transform::gRotation() const
 {
     return mRotation;
+}
+
+void Transform::Log()
+{
+    stringstream strs;
+    strs << "transform dump" << endl;
+
+    Tools::Str::AddHashStreamVec3(strs,"Position ->",mPosition);
+    Tools::Str::AddHashStreamVec3(strs,"Rotation ->",mRotation);
+    Tools::Str::AddHashStreamVec3(strs,"Scale    ->",mScale);
+
+    Tools::Logger::Info(strs.str());
 }

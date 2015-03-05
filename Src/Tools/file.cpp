@@ -6,6 +6,9 @@ string File::LoadFile(const string& fileName)
 {
     string whole = "";
     fstream file(fileName.c_str());
+
+    //Logger::Info("Load File -> " + fileName);
+
     if(file.is_open())
     {
         while(!file.eof())
@@ -17,7 +20,7 @@ string File::LoadFile(const string& fileName)
         file.close();
     }
     else
-        cout << "Can't read file : " + fileName << endl;
+        Logger::Error("Can't read file : " + fileName);
 
     return whole;
 }
@@ -30,5 +33,5 @@ void File::SaveFile(const string& fileName,const string& data)
         file.close();
     }
     else
-        cout << "Can't save file : " + fileName << endl;
+        Logger::Error("Can't save file : " + fileName);
 }

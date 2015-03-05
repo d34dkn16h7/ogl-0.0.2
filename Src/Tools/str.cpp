@@ -14,6 +14,10 @@ bool Str::isNum(const string& str)
     return val;
 }
 
+void Str::AddHashStreamVec2( stringstream& stream, string key, vec2 val)
+{
+    stream << "\t"<< key << " " << val.x << " " << val.y << endl;
+}
 void Str::AddHashStreamVec3( stringstream& stream, string key, vec3 val)
 {
     stream << "\t"<< key << " " << val.x << " " << val.y << " " << val.z << endl;

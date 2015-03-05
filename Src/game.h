@@ -13,7 +13,6 @@ public:
     static Physics* p_onControl;
 
     static float deltaTime,lastTime;
-    static bool isOpen;
     Game();
     int Run();
     void Update();

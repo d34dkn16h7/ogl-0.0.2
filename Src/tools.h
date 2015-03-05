@@ -2,6 +2,7 @@
 #define TOOLS_H
 
 #include <glm/glm.hpp>
+#include <stdexcept>
 #include <iostream>
 #include <stdlib.h>
 #include <cstdlib>
@@ -9,6 +10,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+
 
 using namespace std;
 using namespace glm;
@@ -71,6 +73,7 @@ namespace Tools
     {
     public:
         static bool isNum( const string&);
+        static void AddHashStreamVec2( stringstream&, string, vec2);
         static void AddHashStreamVec3( stringstream&, string, vec3);
         static void AddHashStreamVec4( stringstream&, string, vec4);
         static string ClearWhiteSpaces( const string&);
@@ -132,18 +135,30 @@ namespace Tools
     class Logger
     {
     private:
-        static void Log(const string str)
+        static void Log(const string& str)
         {
             cout << str << endl;
         }
     public:
-        static void Error(const string str)
+        static void FatalError(const string& str)
+        {
+            throw runtime_error("Fatal Error -> " + str);
+        }
+        static void Error(const string& str)
         {
             Log("Error -> " + str);
         }
-        static void Warning(const string str)
+        static void Warning(const string& str)
         {
             Log("Warning -> " + str);
+        }
+        static void Info(const string& str)
+        {
+            Log("-> " + str);
+        }
+        static void SubInfo(const string& str)
+        {
+            Log("\t-> " + str);
         }
     };
 

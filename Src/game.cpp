@@ -9,7 +9,7 @@
 Physics* Game::p_onControl = nullptr;
 GameObject* Game::onControl;
 GameObject* Game::player;
-bool Game::isOpen;
+
 float Game::deltaTime,Game::lastTime;
 
 static vec3 Zero(0,0,0);
@@ -20,7 +20,9 @@ static vec3 Forward(0,0,-1.0001) , Backward = -Forward;
 Game::Game()
 {
     Tools::Settings::LoadSettings();
-    isOpen = Renderer::Setup(1024,576);
+
+    Renderer::Setup(1024,576);
+
     Tools::Settings::LoadFiles();
     Input::Init();
 }
@@ -30,7 +32,7 @@ int Game::Run()
     GameObject::LoadFromFile(Settings::mapFile);
     lastTime = glfwGetTime();
     onControl = player;
-    while( (isOpen && !Input::isKeyRelased(GLFW_KEY_ESCAPE)) && !glfwWindowShouldClose( Renderer::gWindow() ) )
+    while(!Input::isKeyRelased(GLFW_KEY_ESCAPE) && !glfwWindowShouldClose( Renderer::gWindow() ))
     {
         glfwPollEvents();
         Update();
@@ -42,7 +44,6 @@ int Game::Run()
     return 0;
 }
 
-
 void Game::Update() /// Update all
 {
     Input::Update();
@@ -53,6 +54,14 @@ void Game::Update() /// Update all
 
     player_Input();
 }
+
+void Game::Timer() /// Update deltaTime
+{
+    deltaTime = ( glfwGetTime() - lastTime );
+    lastTime = glfwGetTime();
+}
+
+/*************************************/
 GameObject* mgmo = nullptr;
 float Speed  = 15;
 void Game::player_Input() /// Player input - remove it later
@@ -68,6 +77,9 @@ void Game::player_Input() /// Player input - remove it later
             else
                 p_onControl = onControl->AddComponent<Physics>();*/
         }
+
+        if(Input::isKeyPressed(GLFW_KEY_SPACE))
+            onControl->transform.Log();
 
         if(p_onControl != nullptr)
         {
@@ -94,10 +106,4 @@ void Game::player_Input() /// Player input - remove it later
         c->transform.uScale(vec3(1,1,1));
         c->SetCameraType(CameraType::Perspective);
     }
-}
-
-void Game::Timer() /// Update deltaTime
-{
-    deltaTime = ( glfwGetTime() - lastTime );
-    lastTime = glfwGetTime();
 }

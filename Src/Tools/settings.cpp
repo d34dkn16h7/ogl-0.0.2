@@ -13,7 +13,7 @@ vector<ObjectInfo> Settings::objectInfos;
 
 void Settings::LoadSettings()
 {
-    Token setting( File::LoadFile("Data/settings") );
+    StoredToken setting( "Data/settings", "settings");
 
     while(setting.Next() != "#endToken")
     {
@@ -39,7 +39,7 @@ void Settings::LoadSettings()
 
 void Settings::LoadFiles()
 {
-    Token setting( File::LoadFile("Data/settings") );
+    StoredToken setting( "Data/settings", "settings");
     while(setting.Next() != "#endToken")
     {
         if( setting == "#texture" )

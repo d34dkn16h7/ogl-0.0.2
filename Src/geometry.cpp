@@ -44,7 +44,7 @@ void Geometry::Load(string fSrc,string name) /// Load .obj model
             LinkData();
         }
         else
-            cout << "Empty or corrupted model file : " << name <<  endl;
+            Tools::Logger::Error("Empty or corrupted model file : " + name);
     }
 }
 
@@ -123,28 +123,33 @@ void GData::MakeData()
     info.textureCoordC = textureCoord.size() / 2;
     info.textureIndexerC = textureIndexer.size();
 
+    printInfo();
+    //printData();
 }
 
 void GData::printInfo()
 {
-    cout << " ------ " << endl;
-    cout << "Verticles : " << info.vertexC << endl;
-    cout << "Vertex Elements : " << info.elementC << endl;
-    cout << "Indexed Texture Coordinates : " << info.textureIndexerC << endl;
-    cout << "Texture Coordinates : " << info.textureCoordC << endl;
-    cout << " ------ " << endl;
+    stringstream strs;
+
+    strs << "OBJ DUMP" << endl;
+    strs << "\t" << "Verticles : " << info.vertexC << endl;
+    strs << "\t" << "Vertex Elements : " << info.elementC << endl;
+    strs << "\t" << "Indexed Texture Coordinates : " << info.textureIndexerC << endl;
+    strs << "\t" << "Texture Coordinates : " << info.textureCoordC;
+
+    Tools::Logger::Info(strs.str());
 }
 
 void GData::printData()
 {
+    stringstream strs;
+    strs << "OBJ DATA DUMP" << endl;
     for (unsigned int i = 0; i < data.size();i += 5)
     {
-        cout << "vertex "<< data[i] << endl;
-        cout << "vertex "<< data[i + 1] << endl;
-        cout << "vertex "<< data[i + 2] << endl;
-        cout << "vertexTexture "<< data[i + 3] << endl;
-        cout << "vertexTexture "<< data[i + 4] << endl;
+        Tools::Str::AddHashStreamVec3(strs,"Vertex",vec3(data[i],data[i + 1],data[i + 2]));
+        Tools::Str::AddHashStreamVec2(strs,"VertexTexture",vec2(data[i + 3],data[i + 4]));
     }
+    Tools::Logger::Info(strs.str());
 }
 
 void GData::pTextureCoord(vec2 tcoord)
