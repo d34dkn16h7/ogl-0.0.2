@@ -10,7 +10,7 @@ using namespace std;
 using namespace glm;
 
 enum EditMode
-{PositionEdit,ScaleEdit,RotationEdit,ColorEdit};
+{None,PositionEdit,ScaleEdit,RotationEdit,ColorEdit};
 
 class GameObject;
 

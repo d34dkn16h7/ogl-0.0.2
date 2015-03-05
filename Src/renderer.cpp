@@ -20,7 +20,9 @@ void Renderer::RenderObjects() /// Render all objects
     GLenum type = GL_TRIANGLES;
     string lastTexture = "null";
     string lastDrawName = "null";
+
     prog->SetUniform("cameraMatrix",cam->GetMatrix());
+
     for(GameObject* gmo : drawObjects)
     {
         glPolygonMode( GL_FRONT_AND_BACK, Editor::isSelected( gmo ) ? GL_LINE : GL_FILL);

@@ -6,7 +6,7 @@
 #include <GLFW/glfw3.h>
 
 #define MOUSE_KEY_COUNT 3
-#define KEY_COUNT 255
+#define KEY_COUNT 999
 
 using namespace glm;
 

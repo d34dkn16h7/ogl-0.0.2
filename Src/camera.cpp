@@ -1,23 +1,20 @@
 #include "camera.h"
+#include "game.h"
 
 Camera* Camera::MainCamera;
 
 Camera::Camera(int x,int y) :
-    mCamType(CameraType::Perspective),fow(60/** 45 **/), aspectRatio( (float)x / (float)y ), ScreenSize( vec2(x,y) )
+    mCamType(CameraType::Perspective),fow(45), aspectRatio( (float)x / (float)y ), ScreenSize( vec2(x,y) )
 {
     MainCamera = this;
-    transform.aPosition(vec3(0,0,15)); // +?
-    //transform.uScale(vec3(15,15,15));
-    //transform.aRotation(vec3(0,90,0)); //Y!
+    transform.aPosition(vec3(0,0,15));
 
     GenerateMatrix();
 }
 
 void Camera::GenerateMatrix()
 {
-    look =
-        lookAt(transform.gPosition() * 2.0f,
-              (transform.gPosition() * 2.0f) + lookTarget, vec3(0,mCamType == CameraType::Perspective ? -1 : 1,0));
+    look = GetLook(lookTarget);
     projection = GetProjection();
     camera = projection * look * transform.gMatrix();
 }
@@ -62,7 +59,7 @@ mat4 Camera::Matrix()
 
 mat4 Camera::GetLook(vec3 mPos)
 {
-    return lookAt(transform.gPosition() * 2.0f,transform.gPosition() + lookTarget, vec3(0,1,0));
+    return lookAt(transform.gPosition() * 2.0f,transform.gPosition() + mPos, vec3(0,1,0));
 }
 
 mat4 Camera::GetProjection()

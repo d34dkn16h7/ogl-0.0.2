@@ -20,6 +20,8 @@ void Editor::Update()
         UpdateSelection( GameObject::Find("player") );
 
     /// Why not GUI?
+    if(Input::isKeyPressed(GLFW_KEY_0) )
+        mode = EditMode::None;
     if(Input::isKeyPressed(GLFW_KEY_1) )
         mode = EditMode::PositionEdit;
     if(Input::isKeyPressed(GLFW_KEY_2) )
@@ -28,6 +30,9 @@ void Editor::Update()
         mode = EditMode::RotationEdit;   /// Empty
     if(Input::isKeyPressed(GLFW_KEY_4) )
         mode = EditMode::ColorEdit;   /// Empty
+
+    if(isMultyEdit)
+        Edit();
 }
 
 void Editor::Edit()

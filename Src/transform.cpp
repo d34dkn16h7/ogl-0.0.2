@@ -5,9 +5,9 @@ void Transform::MakeMatrix()
 {
     auto m4 = mat4(1.0);
     mMatrix = translate(m4,mPosition);
-    mMatrix *= scale(m4,mScale);
     mMatrix *= rotate(m4,mRotation.x , vec3(0,1,0));
     mMatrix *= rotate(m4,mRotation.y , vec3(1,0,0));
+    mMatrix *= scale(m4,mScale);
 
     if(parent != nullptr)
         parent->GenerateMatrix();

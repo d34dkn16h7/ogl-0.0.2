@@ -268,7 +268,7 @@
 	<vector>
 	<string>
 
-1425407231 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\editor.cpp
+1425572771 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\editor.cpp
 	"input.h"
 	"camera.h"
 	"editor.h"
@@ -277,12 +277,12 @@
 	"component.h"
 	"gameObject.h"
 
-1425390559 c:\users\stanislav\documents\github\ogl-0.0.2\src\input.h
+1425570327 c:\users\stanislav\documents\github\ogl-0.0.2\src\input.h
 	<GL/glew.h>
 	<glm/glm.hpp>
 	<GLFW/glfw3.h>
 
-1425390559 c:\users\stanislav\documents\github\ogl-0.0.2\src\editor.h
+1425572735 c:\users\stanislav\documents\github\ogl-0.0.2\src\editor.h
 	<glm/glm.hpp>
 	<vector>
 
@@ -311,7 +311,7 @@
 	<vector>
 	<string>
 
-1425566873 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\geometry.cpp
+1425569172 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\geometry.cpp
 	"program.h"
 	"geometry.h"
 	"renderer.h"
@@ -342,7 +342,7 @@
 	"gameObject.h"
 	"component.h"
 
-1425413530 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\program.cpp
+1425570096 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\program.cpp
 	"tools.h"
 	"program.h"
 
@@ -355,7 +355,7 @@
 	"geometry.h"
 	"component.h"
 
-1425566952 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\renderer.cpp
+1425570145 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\renderer.cpp
 	"game.h"
 	"tools.h"
 	"editor.h"
@@ -369,7 +369,7 @@
 	"tools.h"
 	"texture.h"
 
-1425564974 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\file.cpp
+1425567028 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\file.cpp
 	"../tools.h"
 
 1425565075 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\settings.cpp
@@ -382,11 +382,11 @@
 1425390559 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\tools\token.cpp
 	"../tools.h"
 
-1425565324 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\transform.cpp
+1425568525 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\transform.cpp
 	"transform.h"
 	"tools.h"
 
-1425409085 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\gameobject.cpp
+1425572660 source:c:\users\stanislav\documents\github\ogl-0.0.2\src\gameobject.cpp
 	"gameObject.h"
 	"renderer.h"
 	"collider2d.h"

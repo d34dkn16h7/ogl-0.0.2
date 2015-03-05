@@ -59,26 +59,25 @@ GData* Geometry::FindGDT(string sStr) /// Find a model ptr
 
 void Geometry::LinkData() /// Link VAO + VBO + EBO
 {
-    gPtr->MakeData();
-
-    glGenVertexArrays( 1, &gPtr->vao );
-    glBindVertexArray( gPtr->vao );
-
-    glGenBuffers( 1, &gPtr->vbo );
-    glBindBuffer( GL_ARRAY_BUFFER , gPtr->vbo );
-    glBufferData( GL_ARRAY_BUFFER , (gPtr->data.size() * sizeof( gPtr->data[0])), &gPtr->data[0],GL_STATIC_DRAW);
-
+    const size_t dataSize = sizeof(GLfloat) * 5;
     GLuint vertexAttrib = Program::GetProgramIns("Model")->gAttrib("vertexIn");
     GLuint textureCoordAttrib = Program::GetProgramIns("Model")->gAttrib("textureCoordIn");
 
-    const size_t dataSize = sizeof(GLfloat) * 5;
+    gPtr->MakeData();
+    {
+        glGenVertexArrays( 1, &gPtr->vao );
+        glBindVertexArray( gPtr->vao );
 
-    glEnableVertexAttribArray( vertexAttrib );
-    glVertexAttribPointer( vertexAttrib , 3, GL_FLOAT, GL_FALSE, dataSize ,  0 );
+        glGenBuffers( 1, &gPtr->vbo );
+        glBindBuffer( GL_ARRAY_BUFFER , gPtr->vbo );
+        glBufferData( GL_ARRAY_BUFFER , (gPtr->data.size() * sizeof( gPtr->data[0])), &gPtr->data[0],GL_STATIC_DRAW);
 
-    glEnableVertexAttribArray( textureCoordAttrib );
-    glVertexAttribPointer( textureCoordAttrib , 2, GL_FLOAT, GL_FALSE, dataSize , (GLvoid*)( sizeof(GLfloat) * 3 ) );
+        glEnableVertexAttribArray( vertexAttrib );
+        glVertexAttribPointer( vertexAttrib , 3, GL_FLOAT, GL_FALSE, dataSize ,  0 );
 
+        glEnableVertexAttribArray( textureCoordAttrib );
+        glVertexAttribPointer( textureCoordAttrib , 2, GL_FLOAT, GL_FALSE, dataSize , (GLvoid*)( sizeof(GLfloat) * 3 ) );
+    }
     gPtr->verticles.clear();
     gPtr->textureCoord.clear();
     gPtr->elementary.clear();
@@ -94,24 +93,18 @@ void GData::MakeData()
 
     for(unsigned int i = 0;i < elementary.size();i++)
     {
-        int vertexIndexer = elementary[i] * 3;
-        data.push_back(verticles[vertexIndexer]);
-        data.push_back(verticles[vertexIndexer + 1]);
-        data.push_back(verticles[vertexIndexer + 2]);
+        int vIndexer = elementary[i] * 3;
+        int tIndexer = textureIndexer[i];
+
+        data.push_back(verticles[vIndexer]);
+        data.push_back(verticles[vIndexer + 1]);
+        data.push_back(verticles[vIndexer + 2]);
 
         if (textureIndexer.size() > 0 && textureCoord.size() > 0) /// is indexed
-        {
-            //cout << " Indexed Coordinates" << endl;
-            int textureIndexeri = textureIndexer[i];
-            lastIndexed = vec2(textureCoord[textureIndexeri],textureCoord[textureIndexeri + 1]);
-        }
+            lastIndexed = vec2(textureCoord[tIndexer],textureCoord[tIndexer + 1]);
         else if( ni < textureCoord.size() ) /// not indexed but has data
-        {
-            //cout << " Raw Coordinates" << endl;
             lastIndexed = vec2(textureCoord[ni],textureCoord[ni + 1]);
-        }
-        //else /// Push last indexed values
-            //cout << " TextureMapped -> 0:0" << endl;
+
         data.push_back(lastIndexed.x);
         data.push_back(lastIndexed.y);
 
@@ -152,17 +145,17 @@ void GData::printData()
     Tools::Logger::Info(strs.str());
 }
 
-void GData::pTextureCoord(vec2 tcoord)
+void GData::pTextureCoord(vec2 v)
 {
-    textureCoord.push_back(tcoord.x);
-    textureCoord.push_back(tcoord.y);
+    textureCoord.push_back(v.x);
+    textureCoord.push_back(v.y);
 }
 
-void GData::pVerticle(vec3 vertex)
+void GData::pVerticle(vec3 v)
 {
-    verticles.push_back(vertex.x);
-    verticles.push_back(vertex.y);
-    verticles.push_back(vertex.z);
+    verticles.push_back(v.x);
+    verticles.push_back(v.y);
+    verticles.push_back(v.z);
 }
 
 void GData::pElement(GLuint val)

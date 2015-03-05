@@ -30,28 +30,15 @@ GameObject::~GameObject()
 
 GameObject* GameObject::Find(string name)
 {
-#ifdef DBG_GAMEOBJECT_FIND
-    cout << "toFind : " << name << endl;
-#endif // DBG_GAMEOBJECT_FIND
     for(unsigned int i = 0 ; i < gameObjects.size(); i++)
     {
-#ifdef DBG_GAMEOBJECT_FIND
-        cout << "-> : " << gameObjects[i]->nameToken << endl;
-#endif // DBG_GAMEOBJECT_FIND
         if(name == gameObjects[i]->nameToken)
             return gameObjects[i];
     }
 
-    Log_DBG("No '" + name + "' found.");
+    Tools::Logger::Warning("No '" + name + "' found.");
 
     return nullptr;
-}
-
-void Log_DBG(string str)
-{
-#ifdef DBG
-    cout << str << endl;
-#endif
 }
 
 void GameObject::Reg()
@@ -87,7 +74,7 @@ void GameObject::LoadFromFile(string fSrc)
         }
         else if(gmo != nullptr) /// Property if not empty object?
         {
-            if(mapToken == "onControl" ) Game::player = gmo;
+            if(mapToken == "onControl" ) {Game::player = gmo;gmo->nameToken = "player";}
             else if(mapToken == "pos" ) gmo->transform.uPosition( mapToken.GetNVec3() );
             else if(mapToken == "rot" ) gmo->transform.uRotation( mapToken.GetNVec3() );
             else if(mapToken == "scl" ) gmo->transform.uScale( mapToken.GetNVec3() );
@@ -112,6 +99,7 @@ void GameObject::SaveToFile(string tFile)
         if(gmo->ComponentCount() < 1) mstr << "\tstaticObject" << endl;
     }
     File::SaveFile(tFile,mstr.str());
+
     printf("Map Saved : %s \n\tMap Size : %i\n",tFile.c_str(),gameObjects.size());
 }
 
