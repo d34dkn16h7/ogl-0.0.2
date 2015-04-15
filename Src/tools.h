@@ -91,6 +91,11 @@ namespace Tools
         Token* Find(string);
         void MakeToken(); /// Based on space | tab | new line
     public:
+
+        const string
+            token_b = "#firstToken",
+            token_e = "#endToken";
+
         vector<string> tokens;
 
         static string EndToken;
@@ -120,7 +125,7 @@ namespace Tools
         string gRaw();
         string gKey();
 
-        void RemakeWithRules( vector<char>, vector<char>);
+        void RemakeWithRules(const vector<char>&, const vector<char>&);
         void Reset(); /// Reset for next use
         void Clear(); /// Clear all data
         void PrintTokens(); /// Print all tokens

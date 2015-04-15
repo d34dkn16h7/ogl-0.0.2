@@ -66,11 +66,11 @@ void Token::MakeToken() /// Based on space | tab | new line
     tokens.push_back("#endToken");
 }
 
-void Token::RemakeWithRules(vector<char> end,vector<char> split)
+void Token::RemakeWithRules(const vector<char>& end,const vector<char>& split)
 {
     Reset();
     string cVal = "";
-    tokens.push_back("#firstToken");
+    tokens.push_back(token_b);
     for (char ch : raw)
     {
         bool isEnded = false;
@@ -105,7 +105,7 @@ void Token::RemakeWithRules(vector<char> end,vector<char> split)
     if(cVal != "")
         tokens.push_back(cVal);
 
-    tokens.push_back("#endToken");
+    tokens.push_back(token_e);
 }
 
 string Token::Next() /// Return next token and update current token

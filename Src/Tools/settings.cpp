@@ -41,14 +41,12 @@ void Settings::LoadFiles()
 {
     StoredToken setting( "Data/settings", "settings");
     while(setting.Next() != "#endToken")
-    {
         if( setting == "#texture" )
         {
             string path = setting.Next();
             string name = setting.Next();
             Texture::LoadTexture(path,name);
         }
-    }
 }
 
 bool Settings::isObject(string n)

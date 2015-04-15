@@ -7,6 +7,11 @@ using namespace Tools;
 
 vector< GData* > Geometry::gData;
 
+const string
+    vertices = "v",
+    textureV = "vt",
+    elemVert = "f";
+
 void Geometry::Load(string fSrc,string name) /// Load .obj model
 {
     gPtr = FindGDT(name);
@@ -14,30 +19,28 @@ void Geometry::Load(string fSrc,string name) /// Load .obj model
     {
         gPtr = new GData();
         gPtr->info.modelId = name;
-        Token geoToken( File::LoadFile(fSrc) ); /// ch == ' ' || ch == '\n' || ch == '\t' || ch == '/'
+        Token geoT( File::LoadFile(fSrc) ); /// ch == ' ' || ch == '\n' || ch == '\t' || ch == '/'
         vector<char> rules = {' ' , '\n' ,'\t' , '/'};
         vector<char> splitter = { '/'};
-        geoToken.RemakeWithRules(rules,splitter);
+        geoT.RemakeWithRules(rules,splitter);
 
-        while( geoToken.Next() !=  Token::EndToken )
+        while( geoT.Next() !=  Token::EndToken )
         {
-            if( geoToken == "v" ) gPtr->pVerticle( geoToken.GetNVec3() );
-            if( geoToken == "vt" ) gPtr->pTextureCoord( geoToken.GetNVec2() );
-            if( geoToken == "f" )
-            {
-                while( geoToken.CanGNum() )
+            if( geoT == vertices ) gPtr->pVerticle( geoT.GetNVec3() );
+            if( geoT == textureV ) gPtr->pTextureCoord( geoT.GetNVec2() );
+            if( geoT == elemVert )
+                while( geoT.CanGNum() )
                 {
-                    gPtr->pElement( (GLuint)geoToken.GetNi() - 1 );
-                    if(geoToken.Peek(1) == "/") /// is next splitter for texture index?
+                    gPtr->pElement( (GLuint)geoT.GetNi() - 1 );
+                    if(geoT.Peek(1) == "/") /// is next splitter for texture index?
                     {
-                        geoToken.Next(); /// Skip the '/' splitter
-                        gPtr->pTextureIndex( (geoToken.GetNi() - 1) * 2 );
+                        geoT.Next(); /// Skip the '/' splitter
+                        gPtr->pTextureIndex( (geoT.GetNi() - 1) * 2 );
                     }
                 }
-            }
         }
 
-        if(geoToken.tokens.size() > 2)
+        if(geoT.tokens.size() > 2)
         {
             gData.push_back(gPtr);
 
