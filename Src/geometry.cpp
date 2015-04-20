@@ -20,9 +20,8 @@ void Geometry::Load(string fSrc,string name) /// Load .obj model
         gPtr = new GData();
         gPtr->info.modelId = name;
         Token geoT( File::LoadFile(fSrc) ); /// ch == ' ' || ch == '\n' || ch == '\t' || ch == '/'
-        vector<char> rules = {' ' , '\n' ,'\t' , '/'};
-        vector<char> splitter = { '/'};
-        geoT.RemakeWithRules(rules,splitter);
+
+        geoT.RemakeWithRules({' ' , '\n' ,'\t' , '/'},{ '/'});
 
         while( geoT.Next() !=  Token::EndToken )
         {
